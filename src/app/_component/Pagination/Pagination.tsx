@@ -1,6 +1,6 @@
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 function Pagination() {
-  let [pageNumber ,setbageNumber]=useState<Number>(1)
+  let [pageNumber ,setbageNumber]=useState<number>(1)
     return (
         <>
 <nav aria-label="Page  navigation example">
