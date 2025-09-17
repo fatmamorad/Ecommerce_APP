@@ -1,5 +1,4 @@
 
-import React, { useEffect, useState } from 'react'
 import { Product, ProductData } from 'image/types/product.type'
 import ProductCard from 'image/app/_component/ProductCard/ProductCard'
 import { getServerSession } from 'next-auth'
@@ -10,7 +9,6 @@ import Pagination from 'image/app/_component/Pagination/Pagination'
 
 async function Page() {
   const sessionData=await getServerSession(authOptions)
-  const [pageNumner,setbageNumber]=useState<number>()
   console.log(1000,sessionData)
   console.log(process.env.NEXT_PUBLIC_BASE_URL)
 
