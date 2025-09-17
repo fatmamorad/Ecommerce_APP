@@ -34,7 +34,7 @@ function Page() {
 
   return (
     <>
-
+    <div className="min-h-screen container m-auto flex justify-center items-center ">
     {loading?<Loading></Loading>
     :<>
     {
@@ -151,7 +151,7 @@ function Page() {
     </>
 
     }
-      
+      </div>
     </>
   );
 }

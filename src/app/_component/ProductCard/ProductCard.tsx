@@ -25,7 +25,7 @@ function ProductCard({ productdata }: { productdata: Product }) {
       <Card className="border-0  relative rounded-2xl group my-10  pt-0">
   
          {productdata.priceAfterDiscount   ? (
-          <p className="absolute z-50 top-0 right-0 p-3 bg-cyan-700  text-white rounded-tr-2xl rounded-tl-2xl rounded-br-2xl">
+          <p className="absolute z-1 top-0 right-0 p-3 bg-cyan-700  text-white rounded-tr-2xl rounded-tl-2xl rounded-br-2xl">
             Sale
           </p>
         ) : (
