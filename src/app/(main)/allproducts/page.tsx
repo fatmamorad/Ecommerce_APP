@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { Product, ProductData } from 'image/types/product.type'
 import ProductCard from 'image/app/_component/ProductCard/ProductCard'
