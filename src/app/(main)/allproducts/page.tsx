@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Product, ProductData } from 'image/types/product.type'
 import ProductCard from 'image/app/_component/ProductCard/ProductCard'
 import { getServerSession } from 'next-auth'
@@ -9,14 +9,20 @@ import Pagination from 'image/app/_component/Pagination/Pagination'
 
 async function Page() {
   const sessionData=await getServerSession(authOptions)
+  const [pageNumner,setbageNumber]=useState<number>(1)
   console.log(1000,sessionData)
   console.log(process.env.NEXT_PUBLIC_BASE_URL)
-  const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products`)
+  async function getItems(pageNumner:number) {
+     const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products`)
   const data: ProductData =await res.json()
   const productList: Product[]=data.data
-  console.log(productList)
-
+  }
  
+ 
+
+  useEffect(()=>{
+     getItems(pageNumner)
+  },[pageNumner])
   return (
     <div className='container mx-auto relative min-h-screen'>
         <div className='relative mb-0'>
@@ -38,7 +44,7 @@ async function Page() {
        }
        </div>
       
-      <Pagination></Pagination>
+      <Pagination ></Pagination>
     </div>
   )
 }
