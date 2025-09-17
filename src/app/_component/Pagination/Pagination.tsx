@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { use, useState } from 'react'
 function Pagination() {
+  let [pageNumber ,setbageNumber]=useState<Number>(1)
     return (
         <>
 <nav aria-label="Page  navigation example">
-  <ul className="flex fixed top-[600px]  items-center -space-x-px h-10 text-base">
+  <ul className="flex fixed top-[650px]  left-1/2 -translate-1/2 items-center -space-x-px h-10 text-base">
     <li>
       <a href="#" className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         <span className="sr-only">Previous</span>

@@ -7,7 +7,10 @@ type CounterContextType = {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
 };
-export const CounterContext = createContext<CounterContextType >();
+export const CounterContext = createContext<CounterContextType >({
+  count: 0,
+  setCount: () => {}, 
+});
 export default function CounterProvider({children}:{children:React.ReactNode}){
     const [count,setCount]=useState(0)
     async function tokenUser(){
