@@ -6,7 +6,7 @@ import Slider from "react-slick";
 
 
 export default function MainSlide() {
-  var settings = {
+  let settings = {
     autoplaySpeed: 2000,
     infinite: true,
     speed: 500,

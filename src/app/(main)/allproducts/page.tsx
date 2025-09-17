@@ -18,7 +18,7 @@ async function Page() {
 
  
   return (
-    <div className='container mx-auto relative'>
+    <div className='container mx-auto relative min-h-screen'>
         <div className='relative mb-0'>
             <p className='text-center text-2xl mt-15 '> ALL PRODUCTS</p>
             <p className='relative bottom-4 left-1/2 font-bold text-gray-600/30  z-0 -translate-1/2 text-8xl w-fit'>A</p>

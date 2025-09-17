@@ -35,12 +35,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <UserProvider>
          <CounterProvider>
           <Navbar/>
+          <main className="min-h-screen">
            {children}
+           </main>
             <Toaster />
-        <Footer/>
+      
          </CounterProvider>
         
         </UserProvider>
+        <Footer/>
       </body>
     </html>
   );

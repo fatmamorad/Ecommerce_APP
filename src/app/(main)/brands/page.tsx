@@ -41,7 +41,7 @@ function Page() {
   }, []);
   return (
     <>
-      <div className="container mt-10  h-screen mx-auto p-5">
+      <div className="container mt-10  min-h-screen mx-auto p-5">
         
         {loading ? (
           <Loading></Loading>

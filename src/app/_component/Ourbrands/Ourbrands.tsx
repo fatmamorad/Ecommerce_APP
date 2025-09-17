@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 function Ourbrands() {
- let [brands,setBrands]=useState<brandItem[]>()
+ const [brands,setBrands]=useState<brandItem[]>()
  async function  getbrand(){
      const data:brandItem[]=await getBrands()
     setBrands(data)
