@@ -1,4 +1,4 @@
-'use client'
+
 import React, { useEffect, useState } from 'react'
 import { Product, ProductData } from 'image/types/product.type'
 import ProductCard from 'image/app/_component/ProductCard/ProductCard'
@@ -19,9 +19,6 @@ async function Page() {
   const productList: Product[]=data.data
   console.log(productList)
 
-  useEffect(()=>{
-
-  },[])
   return (
     <div className='container mx-auto relative min-h-screen'>
         <div className='relative mb-0'>
