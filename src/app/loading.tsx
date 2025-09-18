@@ -4,7 +4,7 @@ function Loading() {
    
     return (
         <>
-        <div className='w-3/4 h-full mx-auto flex justify-center items-center'>
+        <div className='w-3/4 h-screen mx-auto flex justify-center items-center'>
           <span className='loader'></span>
         </div>
         </>

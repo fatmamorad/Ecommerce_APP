@@ -1,4 +1,5 @@
 "use client";
+import type { Metadata } from "next";
 import ProductCard from "image/app/_component/ProductCard/ProductCard";
 import Loading from "image/app/loading";
 import { GetAllBrands, GetProductsByBrand } from "image/FiltrationActions";
@@ -14,8 +15,7 @@ function Page() {
   let [selectedBrand, setSelectedBrand] = useState<string>(
     "64089fe824b25627a25315d1"
   );
-  let [category, setCategory] = useState();
-  let [price, setPrice] = useState();
+  
   async function getBrands() {
     setLoading(true);
     let data: brandItem[] = await GetAllBrands();
@@ -24,10 +24,10 @@ function Page() {
     console.log(1500, data);
   }
   async function getBrandsProducts(id: string) {
-    setLoadingProduct(true);
+    setLoading(true);
     const data: Product[] = await GetProductsByBrand(id);
     setproductList(data);
-    setLoadingProduct(false);
+    setLoading(false);
     console.log(3000, data);
   }
   useEffect(() => {
@@ -41,7 +41,7 @@ function Page() {
   }, []);
   return (
     <>
-      <div className="container mt-10  min-h-screen mx-auto p-5">
+      <div className="container mt-10  min-h-screen  mx-auto p-5">
         
         {loading ? (
           <Loading></Loading>

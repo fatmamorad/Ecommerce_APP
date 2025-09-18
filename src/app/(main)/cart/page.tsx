@@ -31,7 +31,7 @@ import Link from 'next/link'
     async function ChageQuentity(count:number,id:string){
             if (count > 0) {
               setCountDisabled(true);
-              const data: CartData = await UpdateCount(id, count);
+              const data:CartData = await UpdateCount(id, count);
               let sum = 0;
               data.data.products.forEach((item) => {
                 sum += item.count;

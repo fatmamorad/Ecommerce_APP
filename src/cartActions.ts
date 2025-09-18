@@ -95,28 +95,25 @@ export async  function  ClearCart(){
      return data
 }
 
-export async  function  UpdateCount(id:string,count:number){
-  
-     const token :string|undefined= await GetUserToken()
-    
-     if(!token){
-          throw new Error("token error")
-     }
+export async function UpdateCount(id: string, count: number) {
+  const token = await GetUserToken();
+  if (!token) {
+  console.error("No token found");
+  return;
+}
+console.log(token)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart/${id}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      token,
+    },
+    body: JSON.stringify({ count:count }),
+  });
 
-     const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart/${id}`,
-          {
-               method:"put",
-               body:JSON.stringify({
-                    count:count
-               }),
-               headers:{
-                    "content-type":'application/json',
-                    token:token,
-               }
-          }
-     )
-  
-     const data= await res.json()
+  if (!res.ok) throw new Error("Failed to update cart item count");
 
-     return data
+  const data = await res.json();
+
+  return data
 }
