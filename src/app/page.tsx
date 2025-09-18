@@ -12,7 +12,7 @@ async function Page() {
   const sessionData=await getServerSession(authOptions)
   console.log(1000,sessionData)
   console.log(process.env.NEXT_PUBLIC_BASE_URL)
-  const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products`)
+  const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products?limit=12`)
   const data: ProductData =await res.json()
   const productList: Product[]=data.data
   console.log(productList)

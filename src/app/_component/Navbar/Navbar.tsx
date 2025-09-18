@@ -116,9 +116,6 @@ export default function Navbar() {
                       <DropdownMenuItem>
                         <Link href="/allorders">Orders</Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href="/addresses">Addresses</Link>
-                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={() => signOut({ callbackUrl: "/login" })}
@@ -161,6 +158,20 @@ export default function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        {/* Mobile Menu */}
+{toggleBar && (
+  <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-md z-50">
+    <ul className="flex flex-col p-4 gap-2">
+      {components.map((item, index) => (
+        (!item.protected || (item.protected && status === "authenticated")) && (
+          <li key={index} className={`p-2 rounded hover:bg-gray-200 ${path === item.Path ? "bg-[#cdd2d3]" : ""}`}>
+            <Link className="w-full" href={item.Path} onClick={()=>{setToggleBar(!toggleBar)}}>{item.content}</Link>
+          </li>
+        )
+      ))}
+    </ul>
+  </div>
+)}
 
         {/* Mobile toggle button */}
         <button

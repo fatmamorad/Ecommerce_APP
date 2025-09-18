@@ -1,7 +1,17 @@
 
 import ProductDetailsCard from 'image/app/_component/ProductDetailsCard/ProductDetailsCard'
 import { Product } from 'image/types/product.type'
-
+export const metadata = {
+  title: "Products Details",
+  description: "Browse your favorite products in your wishlist on BuyHive.",
+  keywords: ["wishlist", "buyhive", "shopping", "favorites"],
+  openGraph: {
+    title: "Products - BuyHive",
+    description: "Browse your favorite products in your wishlist on BuyHive.",
+    siteName: "BuyHive",
+    type: "website",
+  },
+};
 async function Page({params}:{params:{id:string}}) {
     const {id}=await params
     console
