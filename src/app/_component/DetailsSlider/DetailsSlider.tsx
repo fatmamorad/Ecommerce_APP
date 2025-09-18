@@ -14,7 +14,7 @@ function DetailsSlider({images}:{images:string[]}) {
   };
   return (
        <div className="lg:col-span-4 col-span-12 flex justify-center items-center   h-full  rounded-2xl">
-           <Slider {...settings} className=" col-span-12 slider-container sm:max-w-sm md:max-w-md lg:col-span-4 flex justify-center items-center "> 
+           <Slider {...settings} className=" col-span-12 slider-container max-w-xs md:max-w-md lg:col-span-4 flex justify-center items-center "> 
         {images.map((img)=>{ 
         return(
                    <Image
