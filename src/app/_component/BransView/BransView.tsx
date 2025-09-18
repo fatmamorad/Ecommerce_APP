@@ -47,7 +47,7 @@ function BransView() {
           <Loading></Loading>
         ) : (
           <div className="grid grid-cols-12 gap-3">
-            <div className="hidden lg:block  lg:col-span-3 p-5 shadow-xl">
+            <div className="hidden lg:block  lg:col-span-3 p-5  h-full shadow-xl">
               <p className="text-xl my-4">Filter By Brand</p>
 
               {brand?.map((branditem) => {
@@ -89,9 +89,9 @@ function BransView() {
               </select>
             </div>
 
-            <div className="lg:col-span-9 col-span-12">
+            <div className="lg:col-span-9 col-span-12  h-auto">
               
-              <div className=" grid  h-screen w-full lg:grid-cols-4 md:grid-cols-3  gap-5  my-10 sm:grid-cols-2 grid-cols-1">
+              <div className=" grid  min-h-screen  w-full lg:grid-cols-4 md:grid-cols-3  gap-5  my-10 sm:grid-cols-2 grid-cols-1">
                 {loadingProduct ? (
                   <Loading></Loading>
                 ) : (

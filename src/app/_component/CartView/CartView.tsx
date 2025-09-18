@@ -75,159 +75,172 @@ import Link from 'next/link'
     }
     
     useEffect(()=>{getcartItems()},[])
-    return (
+   return (
+  <>
+    {loading ? (
+      <Loading />
+    ) : (
       <>
-        {loading ? (
-          <Loading />
+        {!CartItems ? (
+          <div className="h-full flex justify-center items-center">
+            <Image src="/empty.png" alt="empty" width={300} height={300} />
+          </div>
         ) : (
-          <>
-            {!CartItems ? (
-              <div className="h-full flex justify-center items-center">
-                <Image src="/empty.png" alt="empty" width={500} height={500} />
+          <div className="w-11/12 lg:w-3/4 mx-auto mt-6">
+            {/* Header */}
+            <div className="grid grid-cols-12 p-4 items-center">
+              <p className="my-3 text-lg md:text-2xl font-semibold col-span-6">
+                Shopping Cart
+              </p>
+              <div className="col-span-6 text-end">
+                <button
+                  onClick={ClearCartData}
+                  className="px-4 py-2 text-xs md:text-sm lg:text-base text-white rounded-xl bg-cyan-800 hover:bg-white hover:text-cyan-950 hover:border hover:border-cyan-800 transition-all duration-200"
+                >
+                  Clear your cart
+                </button>
               </div>
-            ) : (
-              <div className="w-3/4 mx-auto mt-10">
-                <div className="grid grid-cols-12 p-4">
-                  <p className="my-5 text-xl text-start col-span-6 ">
-                    Shopping Cart
-                  </p>
-                  <div className="col-span-6 text-end">
-                    <button
-                      onClick={() => {
-                        ClearCartData();
-                      }}
-                      className="p-4 text-white rounded-2xl bg-cyan-800 hover:bg-white hover:text-cyan-950 hover:border hover:border-cyan-800 transition-all duration-200"
-                    >
-                      Clear your cart
-                    </button>
-                  </div>
-                </div>
-                <div className="relative grid grid-cols-12  grid-rows-12 gap-2 overflow-x-auto shadow-lg sm:rounded-lg">
-                  <table className="w-full col-span-10 row-span-12 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-[#eaf1f1] dark:bg-gray-700 dark:text-gray-400">
-                      <tr>
-                        <th scope="col" className="px-6 py-3">
-                          Product Image
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Name
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Category
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Qty
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Delete
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Total
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {CartItems?.products.map((cartProduct) => {
-                        return (
-                          <tr
-                            key={cartProduct._id}
-                            className=" border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200  dark:hover:bg-gray-600"
-                          >
-                            <th
-                              scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            >
-                              <Image
-                                src={cartProduct.product.imageCover}
-                                alt={cartProduct.product.title}
-                                width={80}
-                                height={80}
-                                className="rounded-2xl"
-                              />
-                            </th>
-                            <td className="px25 py-4">
-                              <p>{cartProduct.product.title}</p>
-                              <p>
-                                {cartProduct.product.brand.image && (
-                                  <Image
-                                    src={cartProduct.product.brand.image}
-                                    alt={cartProduct.product.brand.name}
-                                    width={50}
-                                    height={50}
-                                  />
-                                )}
-                              </p>
-                            </td>
-                            <td className="px-2 py-4">
-                              {cartProduct.product.category.name}
-                            </td>
-                            <td className="px-2 py-4">
-                              <button
-                                disabled={countDisabled}
-                                className="cursor-pointer"
-                                onClick={() => {
-                                  ChageQuentity(
-                                    (cartProduct.count += 1),
-                                    cartProduct.product._id
-                                  );
-                                }}
-                              >
-                                <i className="fa fa-plus-circle fa-xl"></i>
-                              </button>
-                              <span className="mx-2">{cartProduct.count}</span>
-                              <button
-                                disabled={countDisabled}
-                                className="cursor-pointer"
-                                onClick={() => {
-                                  ChageQuentity(
-                                    (cartProduct.count -= 1),
-                                    cartProduct.product._id
-                                  );
-                                }}
-                              >
-                                <i className="fa fa-minus-circle fa-xl"></i>
-                              </button>
-                            </td>
-                            <td className="px-2 py-4 ">
-                              <button
-                                onClick={() => {
-                                  RemoveFromCart(cartProduct.product._id);
-                                }}
-                                className="text-center ms-3 cursor-pointer my-2 "
-                              >
-                                <i className="fa-solid fa-trash"></i>
-                              </button>
-                            </td>
-                            <td className="px-2 py-4">
-                              ${cartProduct.price * cartProduct.count}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                  <div className="col-span-2 place-content-e row-span-6 bg-white text-xs font-bold text-gray-700 uppercase">
-                    <p className="text-start uppercase p-2 border-b-gray-700 border-b-1 ">
-                      summary
+            </div>
+
+            {/* Products List (Mobile Friendly Cards) */}
+            <div className="space-y-4 lg:hidden">
+              {CartItems?.products.map((cartProduct) => (
+                <div
+                  key={cartProduct._id}
+                  className="flex items-center gap-4 bg-white shadow-md rounded-xl p-3"
+                >
+                  <Image
+                    src={cartProduct.product.imageCover}
+                    alt={cartProduct.product.title}
+                    width={60}
+                    height={60}
+                    className="rounded-lg object-contain"
+                  />
+                  <div className="flex-1">
+                    <p className="font-medium text-sm">{cartProduct.product.title}</p>
+                    <p className="text-xs text-gray-500">
+                      {cartProduct.product.category.name}
                     </p>
-                    <div className="grid grid-cols-12 p-2 my-3">
-                      <p className="lg:col-span-6 col-span-12">Total :</p>
-                      <p className="lg:col-span-6 col-span-12 text-end">
-                        {CartItems?.totalCartPrice}
-                      </p>
-                    </div>
-                     <div className='flex justify-center mt-15 items-center '>
-                    <Link href={`/checkout/${CartId}`}className="p-4   rounded-2xl bg-cyan-800 hover:bg-white hover:text-cyan-950 hover:border hover:border-cyan-800 transition-all duration-200"
-                    > Ckeckout</Link>
+                    <div className="flex items-center gap-2 mt-2">
+                      <button
+                        disabled={countDisabled}
+                        onClick={() =>
+                          ChageQuentity(cartProduct.count + 1, cartProduct.product._id)
+                        }
+                      >
+                        <i className="fa fa-plus-circle text-cyan-700"></i>
+                      </button>
+                      <span>{cartProduct.count}</span>
+                      <button
+                        disabled={countDisabled}
+                        onClick={() =>
+                          ChageQuentity(cartProduct.count - 1, cartProduct.product._id)
+                        }
+                      >
+                        <i className="fa fa-minus-circle text-cyan-700"></i>
+                      </button>
+                      <button
+                        onClick={() => RemoveFromCart(cartProduct.product._id)}
+                        className="ms-3 text-red-500"
+                      >
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
                     </div>
                   </div>
+                  <p className="text-sm font-semibold">
+                    ${cartProduct.price * cartProduct.count}
+                  </p>
                 </div>
+              ))}
+            </div>
+
+            {/* Table (Desktop) */}
+            <div className="hidden lg:block overflow-x-auto shadow-md rounded-xl mt-6">
+              <table className="w-full text-sm text-left text-gray-600">
+                <thead className="text-xs uppercase bg-gray-100 text-gray-700">
+                  <tr>
+                    <th className="px-6 py-3">Product</th>
+                    <th className="px-6 py-3">Name</th>
+                    <th className="px-6 py-3">Category</th>
+                    <th className="px-6 py-3">Qty</th>
+                    <th className="px-6 py-3">Delete</th>
+                    <th className="px-6 py-3">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {CartItems?.products.map((cartProduct) => (
+                    <tr
+                      key={cartProduct._id}
+                      className="bg-white border-b hover:bg-gray-50"
+                    >
+                      <td className="px-6 py-4">
+                        <Image
+                          src={cartProduct.product.imageCover}
+                          alt={cartProduct.product.title}
+                          width={70}
+                          height={70}
+                          className="rounded-lg"
+                        />
+                      </td>
+                      <td className="px-6 py-4">{cartProduct.product.title}</td>
+                      <td className="px-6 py-4">{cartProduct.product.category.name}</td>
+                      <td className="px-6 py-4 flex items-center gap-2">
+                        <button
+                          disabled={countDisabled}
+                          onClick={() =>
+                            ChageQuentity(cartProduct.count + 1, cartProduct.product._id)
+                          }
+                        >
+                          <i className="fa fa-plus-circle text-cyan-700"></i>
+                        </button>
+                        <span>{cartProduct.count}</span>
+                        <button
+                          disabled={countDisabled}
+                          onClick={() =>
+                            ChageQuentity(cartProduct.count - 1, cartProduct.product._id)
+                          }
+                        >
+                          <i className="fa fa-minus-circle text-cyan-700"></i>
+                        </button>
+                      </td>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => RemoveFromCart(cartProduct.product._id)}
+                          className="text-red-500"
+                        >
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      </td>
+                      <td className="px-6 py-4 font-semibold">
+                        ${cartProduct.price * cartProduct.count}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Summary */}
+            <div className="mt-6 bg-white shadow-md rounded-xl p-4 w-full lg:w-1/3 ml-auto">
+              <p className="uppercase font-bold border-b pb-2 mb-3">Summary</p>
+              <div className="flex justify-between mb-3 text-gray-700">
+                <span>Total:</span>
+                <span className="font-semibold">{CartItems?.totalCartPrice} LE</span>
               </div>
-            )}
-          </>
+              <Link
+                href={`/checkout/${CartId}`}
+                className="block text-center py-2 rounded-xl bg-cyan-800 text-white hover:bg-white hover:text-cyan-800 hover:border hover:border-cyan-800 transition-all"
+              >
+                Checkout
+              </Link>
+            </div>
+          </div>
         )}
       </>
-    );
+    )}
+  </>
+);
+
 }
 
 export default CartView

@@ -72,7 +72,20 @@ function Page() {
                   </div>
                 ))}
               </div>
-
+                 <div className="lg:hidden col-span-12">
+              <label className="block text-center">Filter by brand</label>
+              <select onChange={(e)=>{
+                setSelectedCategory(e.target.value)
+              }} className="w-full  p-2 mt-4 rounded-2xl border-1 border-gray-300 " value={selectedCategory}>
+                {brand?.map((brandItems) => {
+                  return (
+                    <>
+                      <option value={brandItems._id} key={brandItems._id}>{brandItems.name}</option>
+                    </>
+                  );
+                })}
+              </select>
+            </div>
               <div className="lg:col-span-9 col-span-12">
                 <div className="grid w-full lg:grid-cols-4 md:grid-cols-3 gap-5 my-10 sm:grid-cols-2 grid-cols-1">
                   {loadingProduct ? (

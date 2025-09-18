@@ -25,7 +25,7 @@ export default function MainSlideAC() {
       <div className="grid grid-cols-12 gap-5 ">
         <div className="lg:col-span-12  col-span-12 h-full rounded-2xl">
           <Slider {...settings} className="rounded-2xl">
-            <div className="rounded-2xl  bg-red-500">
+            <div className="rounded-2xl">
               <div className="relative">
                 <Image
                   src="/images/man.jpg"
