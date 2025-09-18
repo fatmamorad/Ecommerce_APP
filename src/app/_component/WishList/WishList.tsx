@@ -134,7 +134,7 @@ function WishList() {
         </div>
       </div>:
       <div className="w-full h-full  flex justify-center items-center flex-col">
-        <Image src='/images/heart.png' alt='brokenHeart' width={300}height={100}></Image>
+        <Image src='/images/heart.png' alt='brokenHeart' width={200}height={100}></Image>
         <p className="text-2xl text-cyan-700">No product in your wishlist !</p>
         <Link className="p-5 bg-cyan-800 text-white rounded-2xl mt-2" href='/'><span className="text-white">Start Shopping</span></Link>
       </div>
