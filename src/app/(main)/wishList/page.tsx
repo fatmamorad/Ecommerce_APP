@@ -1,6 +1,5 @@
 "use client";
 import AddToCartBtn from "image/app/_component/AddToCartBtn/AddToCartBtn";
-import AddtoCartIcon from "image/app/_component/AddtoCartIcon/AddtoCartIcon";
 import Loading from "image/app/loading";
 import { WishProduct } from "image/types/Wish.type";
 import { GetWishlistItems, RemoveProductFromWishlist } from "image/WishlistAction";

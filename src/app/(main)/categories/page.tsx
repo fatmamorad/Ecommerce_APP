@@ -8,7 +8,7 @@ import {
 import { brandItem } from "image/types/Brands";
 import { Datum } from "image/types/Categories.type";
 import { Product } from "image/types/product.type";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function Page() {
   let [brand, setBrand] = useState<brandItem[]>();

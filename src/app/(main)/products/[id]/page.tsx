@@ -1,9 +1,6 @@
 
 import ProductDetailsCard from 'image/app/_component/ProductDetailsCard/ProductDetailsCard'
 import { Product } from 'image/types/product.type'
-import { ProductData } from 'image/types/product_Details.type'
-import Image from 'next/image'
-import React from 'react'
 
 async function Page({params}:{params:{id:string}}) {
     const {id}=await params

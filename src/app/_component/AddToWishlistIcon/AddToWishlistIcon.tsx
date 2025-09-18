@@ -1,7 +1,7 @@
 'use client'
 
 import { AddProductToWishlist } from 'image/WishlistAction'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { toast } from 'sonner'
 function AddToWishlistIcon({id,isInWishlist=false}: {id:string,isInWishlist:boolean}) {
     const [inWishlist, setInWishlist] = useState<boolean>(isInWishlist)

@@ -1,15 +1,15 @@
 'use client'
 import { Input } from '../../../components/ui/input'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../components/ui/form'
-import React, { useState } from 'react'
-import { useForm, FormProvider } from "react-hook-form";
-import { email } from 'zod'
+import { useState } from 'react'
+import { useForm } from "react-hook-form";
+
 import { Button } from 'image/components/ui/button'
-import Image from 'next/image';
+
 import *as z from 'zod'
-import { Phone } from 'lucide-react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { text } from 'stream/consumers';
+
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';

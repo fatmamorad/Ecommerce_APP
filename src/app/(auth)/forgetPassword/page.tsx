@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage
 } from '../../../components/ui/form'
-import React from 'react'
+
 import { useForm } from "react-hook-form";
 import { Button } from 'image/components/ui/button'
 import Image from 'next/image';
@@ -18,12 +18,9 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 function Page() {
   const Route = useRouter()
-
-  // ✅ schema مصححة
   const scheme = z.object({
     email: z.string()
       .nonempty("Email is required")

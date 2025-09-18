@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+
 import Slider from "react-slick";
 import { Italianno } from "next/font/google";
 
@@ -11,7 +11,7 @@ const Encode_ABeeZee_Font = Italianno({
 });
 
 export default function MainSlideAC() {
-  let settings = {
+  const settings = {
     autoplaySpeed: 2000,
     infinite: true,
     speed: 500,

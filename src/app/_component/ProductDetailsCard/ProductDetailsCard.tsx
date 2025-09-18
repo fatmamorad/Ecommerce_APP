@@ -1,11 +1,9 @@
 import { Product } from "image/types/product.type"
-import Image from "next/image"
-import React from "react"
+
 import DetailsSlider from "../DetailsSlider/DetailsSlider"
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn"
 
 function ProductDetailsCard({ productt }: { productt: Product }) {
-  console.log(productt)
   return (
     <div className="w-3/4 mx-auto c my-10   justify-center grid grid-cols-12  gap-6 p-4">
  

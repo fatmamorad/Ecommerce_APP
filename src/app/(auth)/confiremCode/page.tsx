@@ -1,7 +1,7 @@
 'use client'
 
 import { Form, FormField, FormItem, FormMessage } from '../../../components/ui/form'
-import React from 'react'
+
 import { useForm } from "react-hook-form";
 import { Button } from 'image/components/ui/button'
 import * as z from 'zod'

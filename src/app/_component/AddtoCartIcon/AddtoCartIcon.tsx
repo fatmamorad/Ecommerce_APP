@@ -2,7 +2,7 @@
 import { CounterContext } from 'image/app/CounterProvider';
 import { AddProductToCart, GetCartItems } from 'image/cartActions'
 import { CartData } from 'image/types/cart.type';
-import React, { useContext } from 'react'
+import  { useContext } from 'react'
 import { toast } from 'sonner'
 function AddtoCartIcon({id}: {id:string}) {
     const countContext=useContext(CounterContext)

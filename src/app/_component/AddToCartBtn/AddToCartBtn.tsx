@@ -1,6 +1,6 @@
 'use client'
 import { AddProductToCart } from 'image/cartActions'
-import React from 'react'
+
 import { toast } from 'sonner'
 function AddToCartBtn({id}: {id:string}) {
 

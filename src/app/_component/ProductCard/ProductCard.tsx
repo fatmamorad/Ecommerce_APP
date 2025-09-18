@@ -1,17 +1,15 @@
 import React from "react";
 import {
   Card,
-  CardAction,
+ 
   CardContent,
-  CardDescription,
+  
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "../../../components/ui/card";
 import { Product, ProductData } from "image/types/product.type";
 import Image from "next/image";
 import Link from "next/link";
-import { AddProductToCart } from "image/cartActions";
 import AddtoCartIcon from "../AddtoCartIcon/AddtoCartIcon";
 import AddToWishlistIcon from "../AddToWishlistIcon/AddToWishlistIcon";
 

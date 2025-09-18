@@ -9,7 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../../../../components/ui/form";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "image/components/ui/button";
 import Image from "next/image";

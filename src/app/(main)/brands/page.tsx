@@ -5,14 +5,14 @@ import Loading from "image/app/loading";
 import { GetAllBrands, GetProductsByBrand } from "image/FiltrationActions";
 import { brandItem, Brands } from "image/types/Brands";
 import { Product, ProductData } from "image/types/product.type";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function Page() {
-  let [brand, setBrand] = useState<brandItem[]>();
-  let [loading, setLoading] = useState<boolean>(false);
-  let [loadingProduct, setLoadingProduct] = useState<boolean>(false);
-  let [productList, setproductList] = useState<Product[]>();
-  let [selectedBrand, setSelectedBrand] = useState<string>(
+  const [brand, setBrand] = useState<brandItem[]>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingProduct, setLoadingProduct] = useState<boolean>(false);
+  const [productList, setproductList] = useState<Product[]>();
+  const [selectedBrand, setSelectedBrand] = useState<string>(
     "64089fe824b25627a25315d1"
   );
   

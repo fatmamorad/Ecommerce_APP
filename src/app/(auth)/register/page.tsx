@@ -3,20 +3,20 @@ import { Input } from '../../../components/ui/input'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../components/ui/form'
 import React, { useState } from 'react'
 import { useForm, FormProvider } from "react-hook-form";
-import { email } from 'zod'
+
 import { Button } from 'image/components/ui/button'
 import Image from 'next/image';
 import *as z from 'zod'
-import { Phone } from 'lucide-react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { text } from 'stream/consumers';
+
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
 function Page() {
     const Route=useRouter()
-    let [showPassword,setShowPassword]=useState(false)
-    let [showrePassword,setShowrePassword]=useState(false)
+    const [showPassword,setShowPassword]=useState(false)
+    const [showrePassword,setShowrePassword]=useState(false)
     const scheme=z.object({
         name:z.string().nonempty("Name is required").min(3,"Name must be at least 3 characters"),
         email:z.email().nonempty("Email is required").regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,"Please enter valid email"),

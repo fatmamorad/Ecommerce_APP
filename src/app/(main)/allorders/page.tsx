@@ -2,15 +2,15 @@
 import Loading from "image/app/loading";
 import { Order } from "image/types/Orders.type";
 import { GetAllOrders } from "image/WishlistAction";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function Page() {
-  let [OrderData, setOrderData] = useState<Order[]>();
-  let [loading, setLoading] = useState<boolean>(false);
+  const [OrderData, setOrderData] = useState<Order[]>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function GetOrders() {
     setLoading(true);
-    let data: Order[] = await GetAllOrders();
+    const data: Order[] = await GetAllOrders();
     setLoading(false);
     setOrderData(data);
   }
