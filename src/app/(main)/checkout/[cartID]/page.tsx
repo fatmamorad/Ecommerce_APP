@@ -14,7 +14,7 @@ function Page({ params }: { params: { cartID: string } }) {
  
   return (
    <>
-     <CheckoutView params={params}>
+     <CheckoutView >
       
      </CheckoutView>
    </>

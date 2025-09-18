@@ -6,7 +6,7 @@ import Image from "next/image";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Cart, CartData } from "image/types/cart.type";
 import { GetCartItems } from "image/cartActions";
 import { CardPayment, CashPayment } from "image/PaymentAction";
@@ -23,11 +23,12 @@ import {
 import { Input } from "image/components/ui/input";
 import Loading from "image/app/loading";
 
-function CheckoutView({ params }: { params: { cartID: string } }) {
+function CheckoutView() {
+  const { cartID } = useParams<{ cartID: string }>();
   const [paymentMethod, setPaymentMethod] = useState<string>("cash");
   const [CartItems, setCartItems] = useState<Cart>();
   const [TotalPrice, setPrice] = useState(0);
-
+ 
   async function getcartItems() {
     const data: CartData = await GetCartItems();
     setPrice(data?.data?.totalCartPrice);
@@ -45,8 +46,8 @@ function CheckoutView({ params }: { params: { cartID: string } }) {
   });
 
   async function handlechecout(values: z.infer<typeof scheme>) {
-    const cartID: string = params.cartID;
-
+      // 👈 كده هتاخديه من الـ URL
+    console.log(cartID)
     if (paymentMethod === "cash") {
       let data: CheckOut = await CashPayment(cartID, values);
       if (data.status === "success") {
@@ -159,6 +160,7 @@ function CheckoutView({ params }: { params: { cartID: string } }) {
               <Button
                 type="submit"
                 className="w-full mt-4 bg-cyan-800 rounded-xl text-white"
+              
               >
                 Complete Order
               </Button>
