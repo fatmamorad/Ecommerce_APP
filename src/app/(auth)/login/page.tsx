@@ -12,6 +12,7 @@ import Link from 'next/link';
 
 function Page() {
     const Route=useRouter()
+    let [loading,setloading]=useState<boolean>(false)
     let [showPassword,setShowPassword]=useState(false)
     const scheme=z.object({
         email:z.email().nonempty("Email is required").regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,"Please enter valid email"),
@@ -19,12 +20,16 @@ function Page() {
         })
      async function handleLogin(values:z.infer<typeof scheme>){
         console.log(values)
+        setloading(true)
      const dtat=await  signIn('credentials',{
           email: values.email,
            password: values.password,
            redirect: false, // هنا الأساس
      })
-     console.log(dtat)
+     if(dtat?.ok){
+        window.location.href='/'
+     }
+     setloading(false)
     }
    const registerForm=useForm({
     defaultValues:{
@@ -106,8 +111,10 @@ resolver:zodResolver(scheme)
                     </p>
 
                     </Link>
-                    <Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> LOGIN </Button>
-              </form>
+                    {loading?<Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> <i className='fa fa-spinner fa-spin'></i> </Button>
+             :<Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> LOGIN </Button>
+             }
+                    </form>
            </Form>
           
         </div>

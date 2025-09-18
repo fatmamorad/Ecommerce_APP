@@ -87,9 +87,6 @@ export default function Navbar() {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <Link href="/profile">Profile</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
                     <Link href="/allorders">Orders</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />

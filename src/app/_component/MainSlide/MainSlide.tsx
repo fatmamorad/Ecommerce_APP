@@ -39,7 +39,7 @@ export default function MainSlideAC() {
                       
               
               
-                <div className="absolute top-1/2 left-1/5 -translate-1/2">
+                <div className="absolute top-1/2 lg:left-1/5 left-1/4 -translate-1/2">
                 <p>30% OFF</p>
                   <p className="font-bold">FOR</p>
                   <p className="lg:text-6xl text-xl relative font-bold text-cyan-700">

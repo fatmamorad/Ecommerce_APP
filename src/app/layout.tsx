@@ -45,7 +45,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="min-h-screen">
            {children}
            </main>
-            <Toaster />
+            <Toaster toastOptions={{
+            style: {
+              background: "#0e7490",   // اللون الأساسي للتوست
+              color: "white",         // لون الخط
+              borderRadius: "8px",    // تعديل الشكل
+            },
+          }} />
       
          </CounterProvider>
         

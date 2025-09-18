@@ -34,7 +34,6 @@ export default function Ourbrands() {
 
   return (
     <div className="w-3/4 mx-auto mt-10 lg:mt-25 px-4">
-      <p className='text-center text-cyan-700 md:text-3xl text-2xxl'>OUT BRANDS</p>
       <Slider {...settings} >
         {brands?.map((brand) => (
           <div key={brand._id} className="px-2">

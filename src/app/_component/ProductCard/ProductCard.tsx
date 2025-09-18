@@ -54,7 +54,7 @@ function ProductCard({ productdata }: { productdata: Product }) {
               ? productdata.title.split(" ").slice(0, 2).join(" ")
               : productdata.title}
           </p>
-          <div className="">
+          <div className="lg:hidden block">
               <AddToWishlistIcon id={productdata._id} isInWishlist={isInWishlist}/>
               <Link href={`/products/${productdata._id}`}>
                 <i className="text-lg tec font-semibold fa-regular fa-xl text-cyan-700 fa-eye"></i>

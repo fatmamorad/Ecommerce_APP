@@ -81,8 +81,8 @@ import Link from 'next/link'
       <Loading />
     ) : (
       <>
-        {!CartItems ? (
-          <div className="h-full flex justify-center items-center">
+        {!CartItems || CartItems.products.length === 0 ? (
+          <div className="min-h-screen flex justify-center items-center">
             <Image src="/empty.png" alt="empty" width={300} height={300} />
           </div>
         ) : (

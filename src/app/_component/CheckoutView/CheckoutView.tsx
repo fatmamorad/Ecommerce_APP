@@ -52,7 +52,11 @@ function CheckoutView({ params }: { params: { cartID: string } }) {
     if (paymentMethod === "cash") {
       let data: CheckOut = await CashPayment(cartID, values);
       if (data.status === "success") {
-        toast.success("Orders Compeleted");
+
+        toast.success("Orders Compeleted",{position:"top-center"});
+        
+        window.location.href='/'
+    
       }
     }
   
@@ -60,6 +64,8 @@ function CheckoutView({ params }: { params: { cartID: string } }) {
       let data: CheckOutCard = await CardPayment(cartID, values);
       console.log(data)
       if (data.status === "success") {
+         toast.success("Orders Compeleted",{position:"top-center"});
+  
         window.location.href='/'
       }
     }
