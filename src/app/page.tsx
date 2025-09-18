@@ -20,12 +20,12 @@ async function Page() {
  
   return (
     <div className='container mx-auto '>
-   
+      <MainSlide></MainSlide>
+    
     <Ourbrands/>
-    <div className='grid grid-cols-12'>
-        
-    </div>
-    <div className='w-3/4 mx-auto grid lg:grid-cols-4 md:grid-cols-3  gap-5  my-10 sm:grid-cols-2 grid-cols-1'>
+    <p className=' text-center text-2xl md:text-3xl mt-10 text-cyan-700'>PRODUCTS</p>
+    <div className='w-3/4 mx-auto grid lg:grid-cols-4 md:grid-cols-3  gap-5  mb-10 mt-5 sm:grid-cols-2 grid-cols-1'>
+    
        {
        productList.map((item)=>{
         return (

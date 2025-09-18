@@ -1,57 +1,57 @@
 'use client'
 
-import { getBrands } from "image/productBrandsAction";
-import { brandItem } from "image/types/Brands";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import Slider from "react-slick";
+import React, { useEffect, useState } from 'react'
+import Slider from 'react-slick'
+import Image from 'next/image'
+import { getBrands } from 'image/productBrandsAction'
+import { brandItem } from 'image/types/Brands'
 
-function Ourbrands() {
- const [brands,setBrands]=useState<brandItem[]>()
- async function  getbrand(){
-     const data:brandItem[]=await getBrands()
-    setBrands(data)
-}
-useEffect(()=>{
-    getbrand()
-    
-    
-},[])
+// مهم: استورد CSS بتاع slick (ممكن تحطه في _app أو هنا)
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
+export default function Ourbrands() {
+  const [brands, setBrands] = useState<brandItem[]>([])
+
+  useEffect(() => {
+    getBrands().then((data) => setBrands(data || []))
+  }, [])
 
   const settings = {
-    autoplay: true,
+    dots: false,
     infinite: true,
-     autoplaySpeed: 2000,
-    arrows: false,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
     slidesToShow: 5,
     slidesToScroll: 1,
-   
-  };
+    responsive: [
+      { breakpoint: 1280, settings: { slidesToShow: 4 } },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
+    ],
+  }
+
   return (
-
-       <div className=" w-3/4 mx-auto flex   justify-center items-center">
-        < div className=" grid grid-cols-12">
-           <Slider {...settings} className=" col-span-12 slider-container sm:max-w-sm md:max-w-md lg:col-span-4 "> 
-        {brands?.map((brand)=>{ 
-        return(
-     
-                   <Image key={brand._id}
-                  src={brand.image}
-                  alt={brand.name}
-                  width={300}
-                  height={400}
-                  className="  p-2 rounded-full "
-                />
-              
-        )})}
-        
+    <div className="w-3/4 mx-auto mt-10 lg:mt-25 px-4">
+      <p className='text-center text-cyan-700 md:text-3xl text-2xxl'>OUT BRANDS</p>
+      <Slider {...settings} >
+        {brands?.map((brand) => (
+          <div key={brand._id} className="px-2">
+            <div className="flex items-center justify-center p-4  ">
+              <Image
+                src={brand.image}
+                alt={brand.name}
+                width={150}
+                height={150}
+                className="object-contain w-full h-auto "
+              />
+            </div>
+          </div>
+        ))}
       </Slider>
-      </div>
-
-              </div>
-   
-  );
+    </div>
+  )
 }
-
-export default Ourbrands

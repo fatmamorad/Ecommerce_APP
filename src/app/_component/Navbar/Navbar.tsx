@@ -25,7 +25,7 @@ import {
 
 const components: { Path: string; content: string; protected: boolean }[] = [
   { Path: "/", content: "Home", protected: false },
-  { Path: "/wishList", content: "WhishList", protected: false },
+  { Path: "/wishList", content: "WhishList", protected: true },
   { Path: "/brands", content: "Brands", protected: false },
   { Path: "/allproducts", content: "Products", protected: false },
   { Path: "/categories", content: "Categories", protected: false },
@@ -33,6 +33,7 @@ const components: { Path: string; content: string; protected: boolean }[] = [
 
 export default function Navbar() {
   const { data: session, status } = useSession();
+ 
   const countContext = useContext(CounterContext);
   const [toggleBar, setToggleBar] = useState(false);
   const path = usePathname();
@@ -53,7 +54,9 @@ export default function Navbar() {
         <NavigationMenuList className="flex gap-4 w-full">
           {components.map((item, index) => (
             <NavigationMenuItem key={index}>
-              <NavigationMenuLink
+              { 
+                !item.protected&&
+                <NavigationMenuLink
                 asChild
                 className={`${navigationMenuTriggerStyle()} ${
                   path === item.Path ? "bg-[#cdd2d3] rounded-full" : ""
@@ -61,6 +64,22 @@ export default function Navbar() {
               >
                 <Link href={item.Path}>{item.content}</Link>
               </NavigationMenuLink>
+                  
+              }
+
+
+               { 
+                item.protected&&status==='authenticated'&&
+                <NavigationMenuLink
+                asChild
+                className={`${navigationMenuTriggerStyle()} ${
+                  path === item.Path ? "bg-[#cdd2d3] rounded-full" : ""
+                }`}
+              >
+                <Link href={item.Path}>{item.content}</Link>
+              </NavigationMenuLink>
+                  
+              }
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
