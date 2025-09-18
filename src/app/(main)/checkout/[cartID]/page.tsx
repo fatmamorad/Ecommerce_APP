@@ -210,7 +210,7 @@ function Page({ params }: { params: { cartID: string } }) {
           {CartItems?.products.map((item) => {
             return (
               <>
-                <div className="flex p-3  rounded-2xl w-full">
+                <div key={item._id} className="flex p-3  rounded-2xl w-full">
                   <div className="flex-1 relative ">
                     <Image
                       src={item.product.imageCover}

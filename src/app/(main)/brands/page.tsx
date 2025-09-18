@@ -52,7 +52,7 @@ function Page() {
 
               {brand?.map((branditem) => {
                 return (
-                  <div className="flex items-center mt-1">
+                  <div key={branditem._id} className="flex items-center mt-1">
                     <input
                       id="default-radio-2"
                       type="radio"

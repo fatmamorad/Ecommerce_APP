@@ -11,11 +11,11 @@ import { Product } from "image/types/product.type";
 import { useEffect, useState } from "react";
 
 function Page() {
-  let [brand, setBrand] = useState<brandItem[]>();
-  let [loading, setLoading] = useState<boolean>(false);
-  let [loadingProduct, setLoadingProduct] = useState<boolean>(false);
-  let [productList, setproductList] = useState<Product[]>();
-  let [selectedCategory, setSelectedCategory] = useState<string>(
+  const [brand, setBrand] = useState<brandItem[]>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingProduct, setLoadingProduct] = useState<boolean>(false);
+  const [productList, setproductList] = useState<Product[]>();
+  const [selectedCategory, setSelectedCategory] = useState<string>(
     "6439d2d167d9aa4ca970649f"
   );
 

@@ -35,7 +35,7 @@ function AddtoCartIcon({id}: {id:string}) {
     return (
         <>
           <button onClick={()=>{AddToCart(id)}} className='cursor-pointer'>
-             <i className="text-lg tec font-semibold fa fa-xl text-white fa-cart-shopping"></i>
+             <i className="text-lg  font-semibold fa fa-xl text-white fa-cart-shopping"></i>
           </button>
         </>
     )

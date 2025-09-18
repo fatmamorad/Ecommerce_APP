@@ -6,25 +6,19 @@ import { GetWishlistItems, RemoveProductFromWishlist } from "image/WishlistActio
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 function Page() {
-  let [wishData, setWishData] = useState<WishProduct[]>();
-  let [loading,setLoading]=useState<boolean>(false)
+  const [wishData, setWishData] = useState<WishProduct[]>();
+  const [loading,setLoading]=useState<boolean>(false)
   async function GetWihList() {
     setLoading(true)
     let data = await GetWishlistItems();
     setLoading(false)
-    
-    console.log(300,data);
     setWishData(data);
-    console.log(400,wishData)
   }
 
    async function DeleteIteminWihList(id:string) {
-   
-    let data = await RemoveProductFromWishlist(id)
-    console.log(data)
-    
+    const data = await RemoveProductFromWishlist(id)
      GetWihList()
   }
   useEffect(() => {
@@ -46,8 +40,8 @@ function Page() {
        
 
         <div className="relative  overflow-x-auto shadow-md sm:rounded-lg my-5">
-          <table className="w-full hidden xl:block text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full hidden lg:block text-sm text-left rtl:text-right text-gray-500 ">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
                 <th className="px-6 py-3">
                   Image
@@ -82,7 +76,7 @@ function Page() {
                 </td>
                 <th
                   scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-wrap dark:text-white"
                 >
                   {product.title}
                   <p>{product.description}</p>
@@ -117,7 +111,7 @@ function Page() {
             {
             wishData?.map((product)=>{
                 return (
-                <div className="col-span-12 md:col-span-6 p-3 lg:hidden flex justify-center items-center">
+                <div key={product._id} className="col-span-12 lg:col-span-6 p-3 lg:hidden flex justify-center items-center">
                    <Image src={product.imageCover} alt={product.id} width={100} height={100}/>
                    <div>
                       <p>{product.title}</p>
