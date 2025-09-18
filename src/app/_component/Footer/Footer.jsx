@@ -10,10 +10,10 @@ function Footer() {
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
-                  <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 me-3" alt="FlowBite Logo" />
-                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-              </a>
+             <Link href="/" className="flex items-center gap-1 font-extrabold text-xl">
+          <span className="text-gray-800">BUY</span>
+          <span className="text-cyan-700">HIVE</span>
+        </Link>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>

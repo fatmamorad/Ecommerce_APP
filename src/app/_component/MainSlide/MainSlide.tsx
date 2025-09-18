@@ -34,18 +34,18 @@ export default function MainSlideAC() {
                   height={100}
                   className="w-full h-full  rounded-2xl object-cover"
                 />
+               
+                    
+                      
+              
+              
                 <div className="absolute top-1/2 left-1/5 -translate-1/2">
+                <p>30% OFF</p>
                   <p className="font-bold">FOR</p>
                   <p className="lg:text-6xl text-xl relative font-bold text-cyan-700">
                     ONLINE 
-                    <span
-                      className={`absolute bg-cyan-700 lg:text-4xl rounded-full lg:py-4 lg:px-6 py-2  px-4 block text-xs -right-19 -top-5 font-normal text-white md:-top-20 text-center lg:-right-40  rotate-12 -translate-y-1.5  ${Encode_ABeeZee_Font.className}`}
-                    >
-                      ORDER
-                      <p>30%</p>
-                      <p>OFF</p>
-                    </span>
                   </p>
+                  <p className="me-15">ORDERS</p>
                 </div>
               </div>
             </div>

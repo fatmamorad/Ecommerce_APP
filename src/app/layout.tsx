@@ -13,6 +13,7 @@ import CounterProvider from './CounterProvider'
 import UserProvider from "./UserProvider";
 import { store } from "image/Redux/store";
 import ClientProvidet from "./ClientProvidet";
+import SearchIcon from "./_component/Search/Search";
  const Encode_Sans_Font=Encode_Sans({
   subsets:["latin"]
  })
@@ -38,7 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
        <ClientProvidet>
         <UserProvider>
          <CounterProvider>
+         
           <Navbar/>
+          
           <main className="min-h-screen">
            {children}
            </main>

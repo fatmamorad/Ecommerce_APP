@@ -36,7 +36,7 @@ function Page() {
 resolver:zodResolver(scheme)
    })
     return (
-      <div className='w-3/4 mx-auto h-screen flex justify-center items-center'>
+      <div className='w-3/4 mx-auto min-h-screen flex justify-center items-center'>
 
         <div className='lg:w-1/2 content-center  p-8 focus:outline-0 focus:border-0    items-center w-full'>
   

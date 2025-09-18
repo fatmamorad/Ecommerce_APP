@@ -13,7 +13,7 @@ function DetailsSlider({images}:{images:string[]}) {
     slidesToScroll: 1
   };
   return (
-       <div className="lg:col-span-4 col-span-12   h-full  rounded-2xl">
+       <div className="lg:col-span-4 col-span-12 flex justify-center items-center   h-full  rounded-2xl">
            <Slider {...settings} className=" col-span-12 slider-container sm:max-w-sm md:max-w-md lg:col-span-4 flex justify-center items-center "> 
         {images.map((img)=>{ 
         return(

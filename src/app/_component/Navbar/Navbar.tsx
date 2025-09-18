@@ -21,6 +21,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "image/components/ui/dropdown-menu";
+import SearchIcon from "../Search/Search";
 
 const components: { Path: string; content: string; protected: boolean }[] = [
   { Path: "/", content: "Home", protected: false },
@@ -32,156 +33,142 @@ const components: { Path: string; content: string; protected: boolean }[] = [
 
 export default function Navbar() {
   const { data: session, status } = useSession();
- 
   const countContext = useContext(CounterContext);
   const [toggleBar, setToggleBar] = useState(false);
   const path = usePathname();
 
   return (
-    <div className="w-3/4 relative bg-[#eaf1f1] my-2 mx-auto flex justify-between items-center p-2 rounded-full">
-      {/* Logo */}
-      <div className="w-1/4">
-        <Link href="/">
-          <div className="flex items-center justify-center md:text-xl text-xs font-bold">
-            BUY <span className="md:text-xl text-xs text-cyan-700">HIVE</span>
-          </div>
+    <div className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-2">
+     
+        <Link href="/" className="flex items-center gap-1 font-extrabold text-xl">
+          <span className="text-gray-800">BUY</span>
+          <span className="text-cyan-700">HIVE</span>
         </Link>
-      </div>
-
-      {/* Navigation Links */}
-      <NavigationMenu viewport={false} className="hidden lg:flex w-1/2">
-        <NavigationMenuList className="flex gap-4 w-full">
-          {components.map((item, index) => (
-            <NavigationMenuItem key={index}>
-              { 
-                !item.protected&&
-                <NavigationMenuLink
-                asChild
-                className={`${navigationMenuTriggerStyle()} ${
-                  path === item.Path ? "bg-[#cdd2d3] rounded-full" : ""
-                }`}
-              >
-                <Link href={item.Path}>{item.content}</Link>
-              </NavigationMenuLink>
-                  
-              }
-
-
-               { 
-                item.protected&&status==='authenticated'&&
-                <NavigationMenuLink
-                asChild
-                className={`${navigationMenuTriggerStyle()} ${
-                  path === item.Path ? "bg-[#cdd2d3] rounded-full" : ""
-                }`}
-              >
-                <Link href={item.Path}>{item.content}</Link>
-              </NavigationMenuLink>
-                  
-              }
-            </NavigationMenuItem>
-          ))}
-        </NavigationMenuList>
-      </NavigationMenu>
-
-      {/* Right side */}
-      <div className="flex justify-end items-center w-1/4">
-        <NavigationMenu viewport={false}>
-          <NavigationMenuList>
-            {/* User Icon Dropdown */}
-            <NavigationMenuItem>
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  className={`${navigationMenuTriggerStyle()} cursor-pointer`}
-                >
-                  <Image
-                    src="/icons/user.png"
-                    alt="userIcon"
-                    width={20}
-                    height={20}
-                    className="w-full"
-                  />
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent className="w-40 bg-white">
-                  {status === "authenticated" ? (
-                    <>
-                      <DropdownMenuLabel>
-                        Hi, {session?.user?.name}
-                      </DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <Link href="/profile">Profile</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href="/allorders">Orders</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        onClick={() => signOut({ callbackUrl: "/login" })}
-                        className="text-red-500 cursor-pointer"
-                      >
-                        Logout
-                      </DropdownMenuItem>
-                    </>
-                  ) : (
-                    <>
-                      <DropdownMenuItem>
-                        <Link href="/login">Login</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href="/register">Register</Link>
-                      </DropdownMenuItem>
-                    </>
-                  )}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </NavigationMenuItem>
-
-            {/* Cart Icon */}
-            <NavigationMenuItem>
-              <Link
-                href="/cart"
-                className={`${navigationMenuTriggerStyle()} text-red-500 cursor-pointer relative`}
-              >
-                <Image
-                  src="/icons/shopping-cart.png"
-                  alt="cartIcon"
-                  width={20}
-                  height={20}
-                  className="w-full"
-                />
-                <span className="absolute top-0 right-0">
-                  {countContext?.count}
-                </span>
-              </Link>
-            </NavigationMenuItem>
+        <NavigationMenu viewport={false} className="hidden lg:flex">
+          <NavigationMenuList className="flex gap-4">
+            {components.map((item, index) =>
+              (!item.protected || (item.protected && status === "authenticated")) && (
+                <NavigationMenuItem key={index}>
+                  <NavigationMenuLink
+                    asChild
+                    className={`${navigationMenuTriggerStyle()} ${
+                      path === item.Path ? " rounded-full" : ""
+                    }`}
+                  >
+                    <Link href={item.Path}>{item.content}</Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              )
+            )}
           </NavigationMenuList>
         </NavigationMenu>
-        {/* Mobile Menu */}
-{toggleBar && (
-  <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-md z-50">
-    <ul className="flex flex-col p-4 gap-2">
-      {components.map((item, index) => (
-        (!item.protected || (item.protected && status === "authenticated")) && (
-          <li key={index} className={`p-2 rounded hover:bg-gray-200 ${path === item.Path ? "bg-[#cdd2d3]" : ""}`}>
-            <Link className="w-full" href={item.Path} onClick={()=>{setToggleBar(!toggleBar)}}>{item.content}</Link>
-          </li>
-        )
-      ))}
-    </ul>
-  </div>
-)}
+        <div className="flex items-center gap-3">
+        
+          <SearchIcon />
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={`${navigationMenuTriggerStyle()} cursor-pointer`}
+            >
+              <Image
+                src="/icons/user.png"
+                alt="userIcon"
+                width={20}
+                height={20}
+                className="w-5 h-5"
+              />
+            </DropdownMenuTrigger>
 
-        {/* Mobile toggle button */}
-        <button
-          className="lg:hidden p-2"
-          type="button"
-          onClick={() => setToggleBar(!toggleBar)}
-        >
-          <i className="fa-solid fa-xl fa-bars-staggered"></i>
-        </button>
+            <DropdownMenuContent className="bg-white mt-5">
+              {status === "authenticated" ? (
+                <>
+                  <DropdownMenuLabel>
+                    Hi, {session?.user?.name}
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/allorders">Orders</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => signOut({ callbackUrl: "/login" })}
+                    className="text-red-500 cursor-pointer"
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuItem>
+                    <Link href="/login">Login</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/register">Register</Link>
+                  </DropdownMenuItem>
+                </>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Cart */}
+          <Link
+            href="/cart"
+            className="relative p-2 rounded-full hover:bg-gray-100"
+          >
+            <Image
+              src="/icons/shopping-cart.png"
+              alt="cartIcon"
+              width={22}
+              height={22}
+              className="w-5 h-5"
+            />
+            {countContext?.count > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {countContext.count}
+              </span>
+            )}
+          </Link>
+
+          {/* Mobile toggle */}
+          <button
+            className="lg:hidden p-2"
+            type="button"
+            onClick={() => setToggleBar(!toggleBar)}
+          >
+            <i className="fa-solid fa-xl fa-bars-staggered"></i>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {toggleBar && (
+        <div className="lg:hidden fixed w-3/4 right-0 bg-cyan-100 mt-5 rounded-2xl  z-40 animate-slide-down">
+       
+          <ul className="flex flex-col p-4 gap-2 ">
+            {components.map((item, index) =>
+              (!item.protected || (item.protected && status === "authenticated")) && (
+                <li
+                  key={index}
+                  className={`p-3 rounded hover:bg-gray-100 ${
+                    path === item.Path ? "bg-cyan-50" : ""
+                  }`}
+                >
+                  <Link
+                    className="w-full block"
+                    href={item.Path}
+                    onClick={() => setToggleBar(false)}
+                  >
+                    {item.content}
+                  </Link>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
