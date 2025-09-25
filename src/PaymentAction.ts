@@ -53,9 +53,9 @@ export async function CardPayment(id:string,values:{details:string,phone:string,
             }
         })
         
-        const data:CheckOutCard =await res.json()
+        const data =await res.json()
        
-        return data
+        return data.session
        
 }
 
