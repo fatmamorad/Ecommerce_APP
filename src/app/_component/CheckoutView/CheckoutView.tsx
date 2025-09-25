@@ -59,8 +59,7 @@ function CheckoutView() {
     if (paymentMethod === "card") {
       let data: CheckOutCard = await CardPayment(cartID, values);
       if (data.status === "success") {
-        toast.success("Order Completed", { position: "top-center" });
-        window.location.href = "/";
+         window.location.href = data.session.url;
       }
     }
   }
