@@ -1,5 +1,5 @@
 import { GetUserToken } from "./GetUserToken"
-import { CheckOut, CheckOutCard } from "./types/CheckOut.type";
+import {  CardPaymenttype, CheckOut, CheckOutCard } from "./types/CheckOut.type";
 import { Order } from "./types/Orders.type";
 
 export async function CashPayment(id:string,values:{details:string,phone:string,city:string}){
@@ -44,7 +44,7 @@ export async function CardPayment(id:string,values:{details:string,phone:string,
         values
     
 }
-        const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${id}/?url=https://ecommerce-app-lxke.vercel.app/`,{
+        const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${id}/?url=http://localhost:3000`,{
             method:'post',
             body:JSON.stringify(m),
             headers:{
@@ -53,9 +53,9 @@ export async function CardPayment(id:string,values:{details:string,phone:string,
             }
         })
         
-        const data =await res.json()
+        const data:CardPaymenttype =await res.json()
        
-        return data.session
+        return data
        
 }
 
