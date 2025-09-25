@@ -44,7 +44,7 @@ export async function CardPayment(id:string,values:{details:string,phone:string,
         values
     
 }
-        const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${id}/?url=http://localhost:3000`,{
+        const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${id}/?url=https://ecommerce-app-lxke.vercel.app/`,{
             method:'post',
             body:JSON.stringify(m),
             headers:{
