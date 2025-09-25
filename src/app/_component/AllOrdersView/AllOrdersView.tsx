@@ -28,7 +28,7 @@ function Page() {
 
         {OrderData && OrderData.length > 0 ? (
           <>
-            {/* ✅ Table view for large screens */}
+        
             <div className="hidden md:block relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
               <table className="w-full text-sm text-left text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -67,7 +67,7 @@ function Page() {
               </table>
             </div>
 
-            {/* ✅ Card view for small screens */}
+        
             <div className="md:hidden mt-6 space-y-4">
               {OrderData.map((order) => (
                 <div
