@@ -1,14 +1,9 @@
 'use client'
-import { CounterContext } from 'image/app/CounterProvider';
-import { AddProductToCart, GetCartItems } from 'image/cartActions'
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState, AppDispatch } from "image/Redux/store";
-import { CartData } from 'image/types/cart.type';
-import  { useContext, useState } from 'react'
-import { toast } from 'sonner'
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "image/Redux/store";
+import  { useState } from 'react'
 import { addProductAsync } from 'image/Redux/CartSlice';
 function AddtoCartIcon({id}: {id:string}) {
-    // const { loading } = useSelector((state: RootState) => state.cart)
     const [loading ,setLoading]=useState(false)
     const dispatch = useDispatch<AppDispatch>();
     async function addProdcut(id:string){

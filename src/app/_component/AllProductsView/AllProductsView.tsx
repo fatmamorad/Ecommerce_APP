@@ -14,8 +14,6 @@ import {
   setBrand,
   fetchAllBrands,
 } from "image/Redux/Filteration";
-import SelectOption from "../SelectOption/SelectOption";
-
 export default function AllProductsView() {
   const dispatch = useDispatch<AppDispatch>();
   const [showBrands, setShowBrands] = useState(false);
@@ -23,7 +21,6 @@ export default function AllProductsView() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pageFromUrl = Number(searchParams.get("page")) || 1;
-  const [currentPage, setCurrentPage] = useState<number>(pageFromUrl);
   const {
     page,
     loading,
@@ -58,8 +55,6 @@ export default function AllProductsView() {
     dispatch(setPage(page));
     router.push(`/allproducts?page=${page}`);
   };
-  const [showManue, setShowManue] = useState(false);
-
   return (
     <>
       {loading ? (

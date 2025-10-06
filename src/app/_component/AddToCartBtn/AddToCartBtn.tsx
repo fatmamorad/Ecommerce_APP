@@ -1,11 +1,8 @@
 "use client";
-import { AddProductToCart } from "image/cartActions";
 import { addProductAsync } from "image/Redux/CartSlice";
 import { AppDispatch } from "image/Redux/store";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { toast } from "sonner";
 function AddToCartBtn({ id }: { id: string }) {
   const [loading, setLoading] = useState(false);
    const dispatch = useDispatch<AppDispatch>();

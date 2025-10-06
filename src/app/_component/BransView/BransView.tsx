@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import ProductCard from "image/app/_component/ProductCard/ProductCard";
 import Loading from "image/app/loading";
 import { GetAllBrands, GetProductsByBrand } from "image/FiltrationActions";
-import { brandItem, Brands } from "image/types/Brands";
-import { Product, ProductData } from "image/types/product.type";
+import { brandItem } from "image/types/Brands";
+import { Product } from "image/types/product.type";
 import { useEffect, useState } from "react";
 
 function BransView() {

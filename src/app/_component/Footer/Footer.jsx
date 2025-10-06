@@ -6,10 +6,10 @@ function Footer() {
     
 
 
-<footer class="bg-white ">
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        <div class="md:flex md:justify-between">
-          <div class="mb-6 md:mb-0">
+<footer className="bg-white ">
+    <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div className="md:flex md:justify-between">
+          <div className="mb-6 md:mb-0">
              <Link href="/" className="flex items-center gap-1 font-extrabold text-xl">
           <span className="text-gray-800">BUY</span>
           <span className="text-cyan-700">HIVE</span>

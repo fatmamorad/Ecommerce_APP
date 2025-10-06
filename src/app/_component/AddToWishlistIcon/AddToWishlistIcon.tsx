@@ -2,10 +2,7 @@
 
 import { AppDispatch, RootState } from 'image/Redux/store';
 import { addwishList } from 'image/Redux/WishListSlice';
-import { AddProductToWishlist } from 'image/WishlistAction'
-import  { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'sonner'
 function AddToWishlistIcon({id}: {id:string}) {
      const dispatch = useDispatch<AppDispatch>();
   const { products, count, error,loading } = useSelector(

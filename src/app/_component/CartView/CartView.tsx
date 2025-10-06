@@ -1,11 +1,8 @@
 'use client'
-import { useContext, useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 import {ClearCart, GetCartItems, RemoveProductFromCart, UpdateCount} from "image/cartActions"
-import { CartData } from 'image/types/cart.type'
-import { Cart } from 'image/types/cart.type'
 import Image from 'next/image'
 import Loading from 'image/app/loading'
-import { toast } from 'sonner'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'image/Redux/store'
