@@ -5,7 +5,7 @@ import { addwishList } from 'image/Redux/WishListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 function AddToWishlistIcon({id}: {id:string}) {
      const dispatch = useDispatch<AppDispatch>();
-  const { products, count, error,loading } = useSelector(
+  const { products } = useSelector(
     (state: RootState) => state.wishList
   );
   
