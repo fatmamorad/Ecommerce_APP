@@ -26,7 +26,7 @@ function ProductCard({ productdata }: { productdata: Product }) {
       ) : (
         ""
       )}
-      <Link href={`products/${productdata._id}`}>
+     
         <CardHeader className="p-0 mt-0 relative h-50">
           <Image
             src={productdata.imageCover}
@@ -39,6 +39,7 @@ function ProductCard({ productdata }: { productdata: Product }) {
             <AddToWishlistIcon id={productdata._id} />
           </div>
         </CardHeader>
+         <Link href={`products/${productdata._id}`}>
         {/* <Link href={`products/${productdata.id}`}> */}
 
         <CardContent className="text-cyan-800 xl:text-x text-sm p-2 relative">
@@ -65,7 +66,6 @@ function ProductCard({ productdata }: { productdata: Product }) {
             <span>{productdata.priceAfterDiscount} EGP</span>
           </p>
         )}
-
         <p className="col-span-6 text-right flex items-center justify-end gap-1 text-xs">
           {productdata.ratingsQuantity}
           <i className="fa fa-star text-yellow-400"></i>
@@ -73,7 +73,6 @@ function ProductCard({ productdata }: { productdata: Product }) {
         </p>
       </div>
       <CardFooter></CardFooter>
-      {/* </Link> */}
     </Card>
   );
 }
