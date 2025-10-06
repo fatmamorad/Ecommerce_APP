@@ -18,7 +18,6 @@ async function Page() {
   return (
     <div className='container mx-auto '>
     <MainSlide></MainSlide>
-    <Ourbrands/>
     <p className=' text-center text-2xl md:text-3xl mt-10 text-cyan-700'>PRODUCTS</p>
     <Home productList={productList}></Home>
     </div>
