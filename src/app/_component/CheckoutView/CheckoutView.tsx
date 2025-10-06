@@ -10,7 +10,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Cart, CartData } from "image/types/cart.type";
 import { GetCartItems } from "image/cartActions";
 import { CardPayment, CashPayment } from "image/PaymentAction";
-import { CheckOut, CheckOutCard } from "image/types/CheckOut.type";
+import {  CardPaymenttype, CheckOut, CheckOutCard } from "image/types/CheckOut.type";
 import {
   Form,
   FormControl,
@@ -57,10 +57,9 @@ function CheckoutView() {
     }
 
     if (paymentMethod === "card") {
-      let data: CheckOutCard = await CardPayment(cartID, values);
-      if (data.status === "success") {
-        toast.success("Order Completed", { position: "top-center" });
-        window.location.href = "/";
+      let data :CardPaymenttype= await CardPayment(cartID, values);
+      if (data.session.url) {
+        window.location.href = data.session.url;
       }
     }
   }

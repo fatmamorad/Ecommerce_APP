@@ -39,6 +39,11 @@ export interface CheckOutCard {
     session: Session;
 }
 
+export interface CardPaymenttype {
+    status:  string;
+    session: Session;
+}
+
 export interface Session {
     url:         string;
     success_url: string;

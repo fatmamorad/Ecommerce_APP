@@ -1,42 +1,38 @@
 'use client'
 import { CounterContext } from 'image/app/CounterProvider';
 import { AddProductToCart, GetCartItems } from 'image/cartActions'
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "image/Redux/store";
 import { CartData } from 'image/types/cart.type';
-import  { useContext } from 'react'
+import  { useContext, useState } from 'react'
 import { toast } from 'sonner'
+import { addProductAsync } from 'image/Redux/CartSlice';
 function AddtoCartIcon({id}: {id:string}) {
-    const countContext=useContext(CounterContext)
-      async function getcartItems(){
-            const data: CartData = await GetCartItems();
-            let count = 0;
-            data.data.products.forEach((item) => {
-              count += item.count;
-            });
-           
-            countContext.setCount(count);
-        
+    // const { loading } = useSelector((state: RootState) => state.cart)
+    const [loading ,setLoading]=useState(false)
+    const dispatch = useDispatch<AppDispatch>();
+    async function addProdcut(id:string){
+        try{ 
+            setLoading(true)
+            
+      await dispatch(addProductAsync(id)).unwrap();
         }
-    async function  AddToCart(id:string){
-        const data=await AddProductToCart(id)
-        console.log(data)
-        if(data.status==='success'){
-            toast.success(data.message,{
-                position:'top-center',
-            })
-            getcartItems()
+        finally{
+            setLoading(false)
         }
-        else{
-             toast.error(data.message,{
-                position:'top-center',
-            })
-        }
-        
     }
+
     return (
         <>
-          <button onClick={()=>{AddToCart(id)}} className='cursor-pointer'>
-             <i className="text-lg  font-semibold fa fa-xl text-white fa-cart-shopping"></i>
+        {!loading?
+          <button onClick={()=>{addProdcut(id)}} className='cursor-pointer'>
+             <i className=" fa-xl font-semiboldfa fa text-cyan-700 fa-cart-shopping"></i>
+          </button>:
+          <button className=''>
+             <i className="fa-xl fa-solid fa-spinner fa-spin"></i>
           </button>
+          }
+
         </>
     )
 }

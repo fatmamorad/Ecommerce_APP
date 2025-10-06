@@ -1,29 +1,21 @@
 'use client'
 
+import { AppDispatch, RootState } from 'image/Redux/store';
+import { addwishList } from 'image/Redux/WishListSlice';
 import { AddProductToWishlist } from 'image/WishlistAction'
 import  { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner'
-function AddToWishlistIcon({id,isInWishlist=false}: {id:string,isInWishlist:boolean}) {
-    const [inWishlist, setInWishlist] = useState<boolean>(isInWishlist)
-    async function  AddToWish(id:string){
-        const data=await AddProductToWishlist(id)
-        console.log(data)
-        if(data.status==='success'){
-            setInWishlist(true)
-            toast.success(data.message,{
-                position:'top-center',
-            })
-        }
-        else{
-             toast.error(data.message,{
-                position:'top-center',
-            })
-        }
-        
-    }
+function AddToWishlistIcon({id}: {id:string}) {
+     const dispatch = useDispatch<AppDispatch>();
+  const { products, count, error,loading } = useSelector(
+    (state: RootState) => state.wishList
+  );
+  
+  const inWishlist=products?.some((p)=>p._id===id)
     return (
         <>
-         <button onClick={()=>{AddToWish(id)}} className='cursor-pointer' >
+         <button onClick={()=>{dispatch(addwishList(id))}} className='cursor-pointer' >
           {inWishlist ? (
         <i className='fa-solid fa-heart fa-xl text-red-500'></i> 
       ) : (

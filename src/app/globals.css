@@ -73,3 +73,25 @@ a , a:hover{
         100% { height: 0px }
       }
     
+    /* In your main CSS file or a custom utility layer */
+  @layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply rounded-2xl;
+    width: 10px; /* عرض الاسكرول */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    margin-top: 5px;
+    margin-bottom: 5px
+    @apply bg-gray-200 rounded-3xl;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-cyan-800 rounded-3xl;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyan-950;
+  }
+
+}

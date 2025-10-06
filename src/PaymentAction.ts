@@ -1,5 +1,5 @@
 import { GetUserToken } from "./GetUserToken"
-import { CheckOut, CheckOutCard } from "./types/CheckOut.type";
+import {  CardPaymenttype, CheckOut, CheckOutCard } from "./types/CheckOut.type";
 import { Order } from "./types/Orders.type";
 
 export async function CashPayment(id:string,values:{details:string,phone:string,city:string}){
@@ -53,7 +53,7 @@ export async function CardPayment(id:string,values:{details:string,phone:string,
             }
         })
         
-        const data:CheckOutCard =await res.json()
+        const data:CardPaymenttype =await res.json()
        
         return data
        

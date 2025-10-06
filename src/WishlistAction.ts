@@ -2,7 +2,7 @@
 
 import { GetUserId, GetUserToken } from "./GetUserToken"
 import { Order } from "./types/Orders.type"
-import { WishList } from "./types/Wish.type"
+import { WishList, WishProduct } from "./types/Wish.type"
 
 export async  function AddProductToWishlist(id:string){
 
@@ -10,6 +10,14 @@ export async  function AddProductToWishlist(id:string){
      if(!token){
           throw new Error("token error")
      }
+     
+     const exsistWishData= await GetWishlistItems();
+    console.log(exsistWishData.data.some((item:any) => item.id === id))
+    if (exsistWishData.data.some((item:any) => item.id === id)) {
+          
+          RemoveProductFromWishlist(id)
+     }
+     else{
      const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/wishlist`,
           {
                method:"post",
@@ -23,8 +31,8 @@ export async  function AddProductToWishlist(id:string){
      )
   
      const data= await res.json()
-  
-     return data
+
+     return data}
 }
 
 
@@ -34,7 +42,7 @@ export async  function GetWishlistItems(){
      if(!token){
           throw new Error("token error")
      }
-     console.log(5000,token)
+   
      const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/wishlist`,
           {
                headers:{
@@ -42,9 +50,9 @@ export async  function GetWishlistItems(){
                }
           }
      )
-
+   
      const data:WishList= await res.json()
-         return data.data
+     return data
 }
 
 

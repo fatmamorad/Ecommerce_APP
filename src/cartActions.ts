@@ -11,6 +11,7 @@ export async  function GetCartItems(){
           throw new Error("token error")
      }
      console.log(5000,process.env.NEXT_PUBLIC_BASE_URL)
+     console.log("BASE_URL:", process.env.NEXT_PUBLIC_BASE_URL);
      const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart`,
           {
                headers:{
@@ -68,7 +69,7 @@ export async  function  RemoveProductFromCart(id:string){
           }
      )
   
-     const data= await res.json()
+     const data:CartData= await res.json()
      console.log(110,data)
      return data
 }
@@ -113,7 +114,7 @@ console.log(token)
 
   if (!res.ok) throw new Error("Failed to update cart item count");
 
-  const data = await res.json();
+  const data:CartData = await res.json();
 
   return data
 }

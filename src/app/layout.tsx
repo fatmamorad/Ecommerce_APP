@@ -9,7 +9,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import { title } from "process";
 import Navbar from "./_component/Navbar/Navbar";
 import Footer from "./_component/Footer/Footer";
-import CounterProvider from './CounterProvider'
 import UserProvider from "./UserProvider";
 import { store } from "image/Redux/store";
 import ClientProvidet from "./ClientProvidet";
@@ -38,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
        <ClientProvidet>
         <UserProvider>
-         <CounterProvider>
+    
          
           <Navbar/>
           
@@ -52,8 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               borderRadius: "8px",    // تعديل الشكل
             },
           }} />
-      
-         </CounterProvider>
+    
         
         </UserProvider>
         </ClientProvidet>

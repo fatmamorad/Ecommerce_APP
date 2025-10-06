@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { CounterContext } from "image/app/CounterProvider";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,22 +22,35 @@ import {
   DropdownMenuTrigger,
 } from "image/components/ui/dropdown-menu";
 import SearchIcon from "../Search/Search";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "image/Redux/store";
+import { fetchCart, addProductAsync } from "image/Redux/CartSlice";
+// import { fetchCart, } from ;
 
 const components: { Path: string; content: string; protected: boolean }[] = [
   { Path: "/", content: "Home", protected: false },
   { Path: "/wishList", content: "WhishList", protected: true },
-  { Path: "/brands", content: "Brands", protected: false },
+  
   { Path: "/allproducts", content: "Products", protected: false },
-  { Path: "/categories", content: "Categories", protected: false },
 ];
 
 export default function Navbar() {
   const { data: session, status } = useSession();
-  const countContext = useContext(CounterContext);
   const [toggleBar, setToggleBar] = useState(false);
   const path = usePathname();
+    const { count } = useSelector(
+    (state: RootState) => state.cart)
+    
+    const dispatch = useDispatch<AppDispatch>()
 
+useEffect(() => {
+  if (status === "authenticated") {
+    dispatch(fetchCart())
+  }
+}, [status, dispatch])
+  
   return (
+   
     <div className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-2">
      
@@ -53,7 +66,7 @@ export default function Navbar() {
                   <NavigationMenuLink
                     asChild
                     className={`${navigationMenuTriggerStyle()} ${
-                      path === item.Path ? " rounded-full" : ""
+                      path === item.Path ? " rounded-full bg-cyan-700 text-white" : ""
                     }`}
                   >
                     <Link href={item.Path}>{item.content}</Link>
@@ -111,10 +124,7 @@ export default function Navbar() {
           </DropdownMenu>
 
           {/* Cart */}
-          <Link
-            href="/cart"
-            className="relative p-2 rounded-full hover:bg-gray-100"
-          >
+          <Link href="/cart" className="relative p-2 rounded-full hover:bg-gray-100">
             <Image
               src="/icons/shopping-cart.png"
               alt="cartIcon"
@@ -122,9 +132,9 @@ export default function Navbar() {
               height={22}
               className="w-5 h-5"
             />
-            {countContext?.count > 0 && (
+            {count>0 && (
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                {countContext.count}
+                {count}
               </span>
             )}
           </Link>

@@ -5,10 +5,10 @@ import { VerifyToken } from "./types/verifyToken.type"
 export async function GetUserToken() {
     const cookiesDatat=await cookies()
 
-    const encryptToken= cookiesDatat.get("__Secure-next-auth.session-token")?.value
+    const encryptToken= cookiesDatat.get("next-auth.session-token")?.value
    
     const data=await decode({token:encryptToken,secret:process.env.NEXTAUTH_SECRET!})
-   
+    console.log(data)
     return data?.accessToken
 }
 
@@ -26,7 +26,8 @@ export async function GetUserId(){
                 token:token,
                
             }
-        })
+        })  
+
         
         const data:VerifyToken=await res.json()
         return data.decoded.id
