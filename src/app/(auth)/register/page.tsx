@@ -17,6 +17,7 @@ function Page() {
     const Route=useRouter()
     const [showPassword,setShowPassword]=useState(false)
     const [showrePassword,setShowrePassword]=useState(false)
+    const [loading ,setLoading]=useState(false)
     const scheme=z.object({
         name:z.string().nonempty("Name is required").min(3,"Name must be at least 3 characters"),
         email:z.email().nonempty("Email is required").regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,"Please enter valid email"),
@@ -30,6 +31,7 @@ function Page() {
         error:"Confirm password not match.."
     })
      async function handleRegister(values:z.infer<typeof scheme>){
+        setLoading(true)
         console.log(process.env.NEXT_PUBLIC_BASE_URL)
            const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/signup`,{
             method:"post",
@@ -38,7 +40,9 @@ function Page() {
                 "Content-type":"application/json"
             }
            })
+
            const data=await res.json()
+           setLoading(false)
            if(data.statusMsg==="fail"){
             toast.error(data.message,{
                 position:"top-center",
@@ -74,13 +78,13 @@ resolver:zodResolver(scheme)
       <div className='w-3/4 mx-auto h-screen flex justify-centeritems-center'>
 
         <div className='grid grid-cols-12 w-full '>
-        <div className='col-span-12 lg:col-span-6  content-center  p-8 focus:outline-0 focus:border-0    items-center w-full'>
+        <div className='col-span-12 lg:col-span-6  content-center place-content-center place-items-center  p-8 focus:outline-0 focus:border-0    items-center w-full'>
   
            <Form {...registerForm} >
 
-              <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-3 rounded-2xl' onSubmit={registerForm.handleSubmit(handleRegister)}> 
+              <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-3 w-full rounded-2xl' onSubmit={registerForm.handleSubmit(handleRegister)}> 
                   <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>Register Now...</p>
-                   {/* Name Input  */}
+                   
                     <FormField 
                         control={registerForm.control}
                         name="name"
@@ -104,9 +108,6 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
-
-
-                     {/* Email Input  */}
                     <FormField 
                         control={registerForm.control}
                         name="email"
@@ -130,10 +131,6 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
- 
-
-
-  {/* password Input  */}
                     <FormField 
                         control={registerForm.control}
                         name="password"
@@ -159,11 +156,6 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
-
-
-
-
-                     {/* repassword Input  */}
                    <FormField 
                         control={registerForm.control}
                         name="rePassword"
@@ -189,11 +181,6 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
-
-
-
-
-                     {/* phone Input  */}
                     <FormField 
                         control={registerForm.control}
                         name="phone"
@@ -216,7 +203,9 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
-                     <Button type='submit' className='w-full bg-cyan-800 rounded-2xl cursor-pointer text-white'>Register</Button>
+                    {!loading?<Button type='submit' className='w-full bg-cyan-800 rounded-2xl cursor-pointer text-white'>Register</Button>
+                     : <Button type='submit' className='w-full bg-cyan-800 rounded-2xl cursor-pointer text-white'><i className='fa-solid fa-spinner fa-spin'></i></Button> }
+                     
               </form>
            </Form>
           

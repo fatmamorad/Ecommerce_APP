@@ -9,6 +9,7 @@ import *as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 function Page() {
     const Route=useRouter()
@@ -27,7 +28,11 @@ function Page() {
            redirect: false, // هنا الأساس
      })
      if(dtat?.ok){
+        toast.success("User login ")
         window.location.href='/'
+     }
+     else {
+       toast.error(dtat?.error)
      }
      setloading(false)
     }
@@ -67,7 +72,7 @@ resolver:zodResolver(scheme)
                                     </FormLabel>
                                 )}
                             <FormControl>
-                               <Input type='email' {...field} className='text-xs sm:text-s md:text-x' ></Input>
+                               <Input {...field} className='text-xs sm:text-s md:text-x' ></Input>
                             </FormControl>
                             <FormDescription />
                            <FormMessage className='ms-4 text-xs  text-red-700 ' />
