@@ -28,7 +28,11 @@ function Page() {
 
         {OrderData && OrderData.length > 0 ? (
           <>
+<<<<<<< HEAD
             
+=======
+        
+>>>>>>> f6fbdb3f2f2ba6ecf05fd3c92f7ab87ea315929b
             <div className="hidden md:block relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
               <table className="w-full text-sm text-left text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -67,7 +71,11 @@ function Page() {
               </table>
             </div>
 
+<<<<<<< HEAD
             
+=======
+        
+>>>>>>> f6fbdb3f2f2ba6ecf05fd3c92f7ab87ea315929b
             <div className="md:hidden mt-6 space-y-4">
               {OrderData.map((order) => (
                 <div
