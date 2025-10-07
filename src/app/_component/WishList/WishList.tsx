@@ -1,8 +1,5 @@
 "use client";
-import AddToCartBtn from "image/app/_component/AddToCartBtn/AddToCartBtn";
 import Loading from "image/app/loading";
-import { WishProduct } from "image/types/Wish.type";
-import { GetWishlistItems, RemoveProductFromWishlist } from "image/WishlistAction";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "image/Redux/store";
 

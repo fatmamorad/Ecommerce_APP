@@ -20,19 +20,24 @@ function Page() {
         password:z.string().nonempty("Password is required").regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&])[A-Za-z\d@$!%*#?&]{8,}$/,"Password must include uppercase, lowercase, number, and special character"),
         })
      async function handleLogin(values:z.infer<typeof scheme>){
-        console.log(values)
         setloading(true)
      const dtat=await  signIn('credentials',{
           email: values.email,
            password: values.password,
-           redirect: false, // هنا الأساس
+           redirect: false,
      })
      if(dtat?.ok){
-        toast.success("User login ")
+        toast.success("User login Successfully",{
+                position:"top-center",
+                duration: 1000, 
+            })
         window.location.href='/'
      }
      else {
-       toast.error(dtat?.error)
+        toast.error("Invalid username or password ",{
+                position:"top-center",
+                duration: 1000, 
+            })
      }
      setloading(false)
     }
@@ -116,7 +121,7 @@ resolver:zodResolver(scheme)
                     </p>
 
                     </Link>
-                    {loading?<Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> <i className='fa fa-spinner fa-spin'></i> </Button>
+                    {loading?<Button disabled className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> <i className='fa fa-spinner fa-spin'></i> </Button>
              :<Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> LOGIN </Button>
              }
                     </form>

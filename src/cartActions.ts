@@ -10,8 +10,6 @@ export async  function GetCartItems(){
      if(!token){
           throw new Error("token error")
      }
-     console.log(5000,process.env.NEXT_PUBLIC_BASE_URL)
-     console.log("BASE_URL:", process.env.NEXT_PUBLIC_BASE_URL);
      const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart`,
           {
                headers:{
@@ -27,7 +25,6 @@ export async  function GetCartItems(){
 
 
 export async  function AddProductToCart(id:string){
-     console.log(id)
      const token :string|undefined= await GetUserToken()
      if(!token){
           throw new Error("token error")
@@ -53,7 +50,6 @@ export async  function AddProductToCart(id:string){
 
 
 export async  function  RemoveProductFromCart(id:string){
-     console.log(id)
      const token :string|undefined= await GetUserToken()
      if(!token){
           throw new Error("token error")
@@ -99,7 +95,6 @@ export async  function  ClearCart(){
 export async function UpdateCount(id: string, count: number) {
   const token = await GetUserToken();
   if (!token) {
-  console.error("No token found");
   return;
 }
 console.log(token)

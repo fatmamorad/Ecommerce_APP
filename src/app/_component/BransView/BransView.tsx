@@ -21,14 +21,13 @@ function BransView() {
     let data: brandItem[] = await GetAllBrands();
     setLoading(false);
     setBrand(data);
-    console.log(1500, data);
   }
   async function getBrandsProducts(id: string) {
     setLoading(true);
     const data: Product[] = await GetProductsByBrand(id);
     setproductList(data);
     setLoading(false);
-    console.log(3000, data);
+
   }
   useEffect(() => {
     if (selectedBrand) {

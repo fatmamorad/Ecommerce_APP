@@ -12,7 +12,7 @@ import Link from "next/link";
 import AddtoCartIcon from "../AddtoCartIcon/AddtoCartIcon";
 import AddToWishlistIcon from "../AddToWishlistIcon/AddToWishlistIcon";
 function ProductCard({ productdata }: { productdata: Product }) {
-  const isInWishlist = false;
+ 
   console.log(productdata);
   const percent = Math.round((productdata.ratingsAverage / 5) * 100);
   console.log(percent);

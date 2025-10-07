@@ -22,8 +22,6 @@ function Page() {
         newPassword:z.string().nonempty("Password is required").regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&])[A-Za-z\d@$!%*#?&]{8,}$/,"Password must include uppercase, lowercase, number, and special character"),
         })
      async function handleLogin(values:z.infer<typeof scheme>){
-        console.log(120,values)
-        console.log(120,process.env.NEXT_PUBLIC_BASE_URL)
            const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/resetPassword`,{
             method:"put",
             body:JSON.stringify(values),
@@ -51,7 +49,6 @@ function Page() {
                 duration: 1000, 
             });
            }
-           console.log(data)
     }
    const registerForm=useForm({
     defaultValues:{

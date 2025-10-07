@@ -2,7 +2,7 @@
 
 import { GetUserId, GetUserToken } from "./GetUserToken"
 import { Order } from "./types/Orders.type"
-import { WishList, WishProduct } from "./types/Wish.type"
+import { WishList } from "./types/Wish.type"
 
 export async  function AddProductToWishlist(id:string){
 
@@ -12,7 +12,6 @@ export async  function AddProductToWishlist(id:string){
      }
      
      const exsistWishData= await GetWishlistItems();
-    console.log(exsistWishData.data.some((item:any) => item.id === id))
     if (exsistWishData.data.some((item:any) => item.id === id)) {
           
           RemoveProductFromWishlist(id)

@@ -40,9 +40,7 @@ export default function Navbar() {
   const path = usePathname();
     const { count } = useSelector(
     (state: RootState) => state.cart)
-    
     const dispatch = useDispatch<AppDispatch>()
-
 useEffect(() => {
   if (status === "authenticated") {
     dispatch(fetchCart())
@@ -101,6 +99,9 @@ useEffect(() => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <Link href="/allorders">Orders</Link>
+                  </DropdownMenuItem>
+                   <DropdownMenuItem>
+                    <Link href="/proflie">Profile</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem

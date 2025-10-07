@@ -27,8 +27,6 @@ function Page() {
       .email("Please enter valid email")
       .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter valid email"),
   })
-
-  // ✅ أقواس مضبوطة
   async function handleforgetPassword(values: z.infer<typeof scheme>) {
     try {
       console.log(process.env.NEXT_PUBLIC_BASE_URL)

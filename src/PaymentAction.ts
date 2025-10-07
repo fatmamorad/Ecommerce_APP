@@ -33,8 +33,6 @@ export async function CashPayment(id:string,values:{details:string,phone:string,
 
 export async function CardPayment(id:string,values:{details:string,phone:string,city:string}){
     const token= await GetUserToken()
-    console.log(1500,id)
-    console.log(values)
      if (!token) {
     throw new Error("User token not found");
   }

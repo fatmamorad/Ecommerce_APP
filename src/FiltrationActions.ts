@@ -7,7 +7,6 @@ export async function GetProductsByBrand(brand:string){
       const data: ProductData =await res.json()
       const productList: Product[]=data.data
       return productList
-      console.log(productList)
 }
 
 
@@ -17,7 +16,6 @@ export async function GetProductsByCategories(brand:string){
       const data: ProductData =await res.json()
       const productList: Product[]=data.data
       return productList
-      console.log(productList)
 }
 
 
@@ -26,7 +24,6 @@ export async function GetAllBrands(){
       const data: Brands =await res.json()
       const Brands: brandItem[]=data.data
       return Brands
-      //console.log(productList)
 }
 
 
@@ -35,5 +32,4 @@ export async function GetAllCategories(){
       const data: Category =await res.json()
       const Brands: Datum[]=data.data
       return Brands
-      //console.log(productList)
 }

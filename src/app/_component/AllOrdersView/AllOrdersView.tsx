@@ -27,7 +27,9 @@ function Page() {
         {loading && <Loading></Loading>}
 
         {OrderData && OrderData.length > 0 ? (
-           <>       <div className="hidden md:block relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
+          <>
+            {" "}
+            <div className="hidden md:block relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
               <table className="w-full text-sm text-left text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
@@ -64,8 +66,7 @@ function Page() {
                 </tbody>
               </table>
             </div>
-
-<div className="md:hidden mt-6 space-y-4">
+            <div className="md:hidden mt-6 space-y-4">
               {OrderData.map((order) => (
                 <div
                   key={order._id}

@@ -2,17 +2,13 @@
 import { Input } from '../../../components/ui/input'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../components/ui/form'
 import React, { useState } from 'react'
-import { useForm, FormProvider } from "react-hook-form";
-
+import { useForm } from "react-hook-form";
 import { Button } from 'image/components/ui/button'
 import Image from 'next/image';
-import *as z from 'zod'
-
+import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-
 function Page() {
     const Route=useRouter()
     const [showPassword,setShowPassword]=useState(false)
@@ -40,7 +36,6 @@ function Page() {
                 "Content-type":"application/json"
             }
            })
-
            const data=await res.json()
            setLoading(false)
            if(data.statusMsg==="fail"){
@@ -52,7 +47,6 @@ function Page() {
                      },
                 duration: 1000, 
             });
-            
            }
            else{
             Route.push('/login')

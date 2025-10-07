@@ -1,13 +1,7 @@
 'use State'
 import { brandItem } from 'image/types/Brands'
 import React, { useState } from 'react'
-import {
-  fetchProducts,
-  setCategory,
-  fetchAllCate,
-  setBrand,
-  fetchAllBrands
-} from "image/Redux/Filteration";
+
 function SelectOption({options,selectItem}:{options:brandItem[],selectItem:string}) {
     const [showManue,setShowManue]=useState(false)
     

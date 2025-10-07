@@ -50,42 +50,6 @@ export default function MainSlide() {
     <div className="relative w-3/4 mx-auto h-[80vh]  mt-10 overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide) => (
-          // <div key={slide.id}>
-          //   {/* Background Image */}
-          //   <div className="relative w-full h-[80vh]">
-          //     <Image
-          //       src={slide.image}
-          //       alt={slide.title}
-          //       fill
-          //       priority
-          //       className="object-cover"
-          //     />
-          //     <div className="absolute inset-0 bg-black/40" />
-          //     {/* Content */}
-          //     <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-          //       <motion.div
-          //         initial={{ opacity: 0, y: 30 }}
-          //         animate={{ opacity: 1, y: 0 }}
-          //         transition={{ duration: 0.8 }}
-          //         className="max-w-2xl text-white"
-          //       >
-          //         <h2 className="text-4xl md:text-6xl font-bold mb-4">
-          //           {slide.title}
-          //         </h2>
-          //         <p className="text-lg md:text-xl mb-6">
-          //           {slide.description}
-          //         </p>
-          //         <Button
-          //           size="lg"
-          //           className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-3 shadow-lg"
-          //         >
-          //           {slide.cta}
-          //         </Button>
-          //       </motion.div>
-          //     </div>
-          //   </div>
-          // </div>
-
             <div key={slide.id} className="relative w-full h-[90vh]  bg-red-500">
               <div className="absolute inset-0 ">
                 <Image src={slide.image}  alt={slide.title} fill priority className="object-cover" />
