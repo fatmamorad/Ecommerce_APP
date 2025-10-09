@@ -1,5 +1,6 @@
 'use server'
 
+import { toast } from "sonner"
 import { GetUserId, GetUserToken } from "./GetUserToken"
 import { Order } from "./types/Orders.type"
 import { WishList } from "./types/Wish.type"
@@ -8,6 +9,7 @@ export async  function AddProductToWishlist(id:string){
 
      const token :string|undefined= await GetUserToken()
      if(!token){
+          toast.error("User must be login..")
           throw new Error("token error")
      }
      
