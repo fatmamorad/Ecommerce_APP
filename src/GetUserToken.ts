@@ -14,7 +14,7 @@ export async function GetUserToken() {
 export async function GetUserId(){
     const token= await GetUserToken()
      if (!token) {
-    throw new Error("User token not found");
+       throw new Error("User token not found");
   }
 
         const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/verifyToken`,{

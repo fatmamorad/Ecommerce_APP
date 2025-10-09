@@ -9,9 +9,6 @@ import { useEffect } from "react";
 import { fetchwish, removewish } from "image/Redux/WishListSlice";
 import AddtoCartIcon from "../AddtoCartIcon/AddtoCartIcon";
 function WishList() {
-
-
-
     const dispatch = useDispatch<AppDispatch>();
   const { products, count, error,loading } = useSelector(
     (state: RootState) => state.wishList
