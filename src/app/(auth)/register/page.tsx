@@ -76,7 +76,7 @@ resolver:zodResolver(scheme)
   
            <Form {...registerForm} >
 
-              <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-3 w-full rounded-2xl' onSubmit={registerForm.handleSubmit(handleRegister)}> 
+              <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800  md:bg-transparent p-5 space-y-3 w-full rounded-2xl' onSubmit={registerForm.handleSubmit(handleRegister)}> 
                   <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>Register Now...</p>
                    
                     <FormField 
