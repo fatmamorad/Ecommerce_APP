@@ -7,7 +7,7 @@ import { brandItem } from "image/types/Brands";
 import { Product } from "image/types/product.type";
 import { useEffect, useState } from "react";
 
-function BransView() {
+function BrandsView() {
   const [brand, setBrand] = useState<brandItem[]>();
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingProduct, setLoadingProduct] = useState<boolean>(false);
@@ -122,4 +122,4 @@ function BransView() {
   );
 }
 
-export default BransView;
+export default BrandsView;

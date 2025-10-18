@@ -1,4 +1,4 @@
-import BransView from "image/app/_component/BransView/BransView";
+import BrandsView from "image/app/_component/BrandsView/BrandsView";
 export const metadata = {
   title: "Brands Page",
   keywords: ["Brands", "buyhive", "shopping", "favorites"],
@@ -13,8 +13,7 @@ function Page() {
  
   return (
      <>
-       <BransView>
-       </BransView>
+       <BrandsView></BrandsView>
      </>
   );
 }
