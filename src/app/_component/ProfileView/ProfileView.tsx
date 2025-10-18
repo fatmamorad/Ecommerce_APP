@@ -174,7 +174,7 @@ function ProfileView() {
   });
   return (
     <>
-      <div className="w-1/2 mx-auto h-screen  mt-10">
+      <div className="w-3/4 mx-auto h-screen  mt-10">
         <p className="text-center text-2xl font-bold">My Account</p>
         <div className="flex flex-col mt-4 border-1 rounded-2xl p-5 border-gray-400 ">
           <p className="font-medium text-sm md:text-xl ">
@@ -246,7 +246,7 @@ function ProfileView() {
           aria-hidden="true"
           className="hidden overflow-y-auto overflow-x-hidden bg-black/50 fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
         >
-          <div className="relative p-4 w-full max-w-1/2 max-h-full">
+          <div className="relative p-4 w-full max-w-3/4max-h-full">
             <div className="relative flex bg-white justify-center items-center  rounded-lg shadow-sm dark:bg-gray-700">
               <Form {...dataUpdateForm}>
                 <form
@@ -254,7 +254,7 @@ function ProfileView() {
                   onSubmit={dataUpdateForm.handleSubmit(handleDataUpdate)}
                 >
                   <p className="text-center text-s md:text-2xl font-mono mb-5 mt-5">
-                    Register Now...
+                   Update Profile
                   </p>
 
                   <FormField
@@ -348,11 +348,11 @@ function ProfileView() {
           aria-hidden="true"
           className="hidden overflow-y-auto overflow-x-hidden bg-black/50 fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
         >
-          <div className="relative p-4 w-full max-w-1/2 max-h-full">
+          <div className="relative p-4 w-full max-w-3/4 max-h-full">
             <div className="relative flex bg-white justify-center items-center  rounded-lg shadow-sm dark:bg-gray-700">
               <Form {...PasswordUpdateForm}>
                 <form
-                  className="bg-cyan-50/50 flex justify-center items-center flex-col   border-r-cyan-800 md:bg-transparent p-5 space-y-3 w-3/4 rounded-2xl"
+                  className="bg-cyan-50/50 flex justify-center items-center flex-col  md:bg-transparent p-5 space-y-3 w-3/4 rounded-2xl"
                   onSubmit={PasswordUpdateForm.handleSubmit(handlePasswordUpdate)}
                 >
                   <p className="text-center text-s md:text-2xl font-mono mb-5 mt-5">
