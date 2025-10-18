@@ -16,12 +16,14 @@ import Link from 'next/link';
 
 function Page() {
     const Route=useRouter()
+    const [loading,setLoading]=useState(false)
     let [showPassword,setShowPassword]=useState(false)
     const scheme=z.object({
         email:z.email().nonempty("Email is required").regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/,"Please enter valid email"),
         newPassword:z.string().nonempty("Password is required").regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#!%*?&])[A-Za-z\d@$!%*#?&]{8,}$/,"Password must include uppercase, lowercase, number, and special character"),
         })
      async function handleLogin(values:z.infer<typeof scheme>){
+        setLoading(true)
            const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/resetPassword`,{
             method:"put",
             body:JSON.stringify(values),
@@ -30,6 +32,7 @@ function Page() {
             }
            })
            const data=await res.json()
+           setLoading(false)
            if(data.statusMsg==="fail"){
             toast.error(data.message,{
                 position:"top-center",
@@ -43,7 +46,7 @@ function Page() {
            }
            else{
             Route.push('/login')
-              toast.success("User Login Successfully",{
+              toast.success("Password Updated Successfully",{
                 position:"top-center",
                 className: "bg-white  ",
                 duration: 1000, 
@@ -67,9 +70,7 @@ resolver:zodResolver(scheme)
            <Form {...registerForm} >
 
               <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-2 rounded-2xl' onSubmit={registerForm.handleSubmit(handleLogin)}> 
-                  <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>Login Now...</p>
-
-                     {/* Email Input  */}
+                  <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>Reset Password...</p>
                     <FormField 
                         control={registerForm.control}
                         name="email"
@@ -93,10 +94,6 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
- 
-
-
-  {/* password Input  */}
                     <FormField 
                         control={registerForm.control}
                         name="newPassword"
@@ -122,13 +119,9 @@ resolver:zodResolver(scheme)
                         </FormItem>
                         )}
                     />
-
-
-
-                    <Link href='/forgetPassword' className='text-cyan-800'>
-                       <p className='text-center'>Forget Password ?</p> 
-                    </Link>
-                    <Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'>Register</Button>
+                    {!loading?<Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'>Reset</Button>:
+                    <Button className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white' disabled><i className='fa-solid fa-spinner faspind'></i></Button>}
+ 
               </form>
            </Form>
           

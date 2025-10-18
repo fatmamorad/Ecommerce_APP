@@ -64,7 +64,7 @@ useEffect(() => {
                   <NavigationMenuLink
                     asChild
                     className={`${navigationMenuTriggerStyle()} ${
-                      path === item.Path ? " rounded-full bg-cyan-700 text-white" : ""
+                      path === item.Path ? " rounded-full bg-cyan-700 !text-white" : ""
                     }`}
                   >
                     <Link href={item.Path}>{item.content}</Link>

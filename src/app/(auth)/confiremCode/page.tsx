@@ -9,16 +9,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'image/components/ui/input-otp';
+import { useState } from 'react';
 
 function Page() {
+  const [loading,setLoading]=useState(false)
   const Route = useRouter()
   const scheme = z.object({
     resetCode: z.string()
-      .length(6, "Reset code must be 6 digits")
       .regex(/^\d+$/, "Reset code must contain only numbers"),
   })
 
   async function handleLogin(values: z.infer<typeof scheme>) {
+    setLoading(true)
      const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/verifyResetCode`,{
         method: "POST",
         body: JSON.stringify(values),
@@ -27,6 +29,7 @@ function Page() {
         }
       })
      const data=await res.json()
+     setLoading(false)
       if(data.statusMsg==="fail"){
                  toast.error(data.message,{
                      position:"top-center",
@@ -57,54 +60,61 @@ function Page() {
   })
 
   return (
-    <div className='w-3/4 mx-auto h-screen flex justify-center items-center'>
-      <div className='w-full lg:w-1/2  content-center p-8'>
-
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-cyan-50 to-white px-4">
+      <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white shadow-lg border border-cyan-100 rounded-2xl p-6 sm:p-8">
+        
         <Form {...registerForm}>
           <form
-            className='bg-cyan-50/50 space-y-7 flex justify-center items-center flex-col border-b-2 border-r-2 border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 rounded-2xl'
             onSubmit={registerForm.handleSubmit(handleLogin)}
+            className="flex flex-col items-center gap-6"
           >
-            <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>
+            <p className="text-lg sm:text-2xl font-mono text-cyan-900 text-center">
               Enter Reset Code
             </p>
 
-          
             <FormField
               control={registerForm.control}
               name="resetCode"
               render={({ field }) => (
-                <FormItem>
-                  <InputOTP maxLength={6}  {...field}>
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
+                <FormItem className="w-full flex justify-center items-center ">
+                  <InputOTP maxLength={6} {...field} >
+                    <InputOTPGroup >
+                      <InputOTPSlot index={0} className='h-8 w-8' />
+                      <InputOTPSlot index={1} className='h-8 w-8' />
                     </InputOTPGroup>
                     <InputOTPSeparator />
                     <InputOTPGroup>
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={2} className='h-8 w-8' />
+                      <InputOTPSlot index={3} className='h-8 w-8' />
                     </InputOTPGroup>
                     <InputOTPSeparator />
                     <InputOTPGroup>
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
+                      <InputOTPSlot index={4}className='h-8 w-8'  />
+                      <InputOTPSlot index={5} className='h-8 w-8' />
                     </InputOTPGroup>
                   </InputOTP>
-                  <FormMessage className="text-red-600 text-sm mt-2" />
+                  <FormMessage className="text-red-600 text-sm mt-2 text-center" />
                 </FormItem>
               )}
             />
-
-            <Button type='submit' className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'>
+            {!loading? <Button
+              type="submit"
+              className="w-full sm:w-2/3 bg-cyan-800 hover:bg-cyan-700 text-white font-medium py-2 rounded-xl transition-all duration-200"
+            >
               Verify
-            </Button>
+            </Button>:
+             <Button
+              className="w-full sm:w-2/3 bg-cyan-800 hover:bg-cyan-700 text-white font-medium py-2 rounded-xl transition-all duration-200" disabled
+            >
+              <i className='fa-solid fa-spinner fa-spin'></i>
+            </Button>}
+           
           </form>
         </Form>
 
       </div>
     </div>
-  )
+  );
 }
 
 export default Page

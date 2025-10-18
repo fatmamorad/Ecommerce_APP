@@ -24,7 +24,7 @@ import { GetUserToken } from "image/GetUserToken";
 
 function ProfileView() {
   const [loading, setLoading] = useState(false);
-  const { data, update } = useSession();
+  const { data } = useSession();
   useEffect(() => {
     dataUpdateForm.reset({
       name: data?.user.name,
@@ -96,6 +96,7 @@ function ProfileView() {
     );
     const dataA = await res.json();
     setLoading(false);
+    console.log(dataA)
     if (dataA.statusMsg === "fail") {
       toast.error(dataA.errors.msg, {
         position: "top-center",
@@ -119,7 +120,7 @@ function ProfileView() {
       return;
     }
     setLoading(true);
-    console.log("➡️ Sending to API:", values);
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/updateMe/`,
       {
@@ -173,10 +174,10 @@ function ProfileView() {
   });
   return (
     <>
-      <div className="w-1/2 mx-auto h-screen  my-10">
+      <div className="w-1/2 mx-auto h-screen  mt-10">
         <p className="text-center text-2xl font-bold">My Account</p>
-        <div className="flex flex-col mt-4 border-1 rounded-2xl p-5 border-gray-400">
-          <p className="font-medium">
+        <div className="flex flex-col mt-4 border-1 rounded-2xl p-5 border-gray-400 ">
+          <p className="font-medium text-sm md:text-xl ">
             <i className="fa-regular fa-user me-2"></i>Account Informaion
           </p>
           <div className="mt-4 flex flex-row ">
@@ -185,7 +186,7 @@ function ProfileView() {
             </div>
             <div className="flex-colflex justify-center items-center">
               <p className="font-light text-gray-400  text-sm">Name</p>
-              <p className="mt-1 font-light font-sans text-s">
+              <p className="mt-1 w-fit flex justify-center items-center   text-[10px]   font-light font-sans text-s text-sm md:text-xl">
                 {data?.user.name}
               </p>
             </div>
@@ -197,7 +198,7 @@ function ProfileView() {
             </div>
             <div className="flex-colflex justify-center items-center">
               <p className="font-light text-gray-400  text-sm">email</p>
-              <p className="mt-1 font-light font-sans text-s">
+              <p className="mt-1 w-fit flex justify-center items-center   text-[10px]  rounded-md ">
                 {data?.user.email}
               </p>
             </div>
@@ -209,13 +210,13 @@ function ProfileView() {
           <div className="flex justify-center items-center gap-2">
             <Link
               href=""
-              className="w-50 text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
+              className="w-fit flex justify-center items-center   text-[10px]   text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
             >
               <i className="fa-regular fa-heart"></i> WishList
             </Link>
             <Link
               href=""
-              className="w-50 text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
+              className=" w-fit flex justify-center items-center   text-[10px]   text-sm md:text-xl text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
             >
               <i className="fa fa-shopping-cart"></i> Cart
             </Link>
@@ -226,7 +227,7 @@ function ProfileView() {
             type="button"
             data-modal-target="DataUpdateModal"
             data-modal-toggle="DataUpdateModal"
-            className="w-50 text-center mt-5 rounded-2xl px-3 py-2 border-1 bg-cyan-800 text-white"
+            className=" text-center mt-5  w-fit flex justify-center items-center   text-[10px]   rounded-2xl px-3 py-2 border-1 bg-cyan-800 text-white"
           >
             Update Profile
           </button>
@@ -234,7 +235,7 @@ function ProfileView() {
             type="button"
             data-modal-target="PasswordUpdateModal"
             data-modal-toggle="PasswordUpdateModal"
-            className="w-50 text-center mt-5 rounded-2xl px-3 py-2 border-1 border-cyan-800 text-cyan-800"
+            className="w-fit flex justify-center items-center   text-[10px]  mt-5 rounded-2xl px-3 py-2 border-1 border-cyan-800 text-cyan-800"
           >
             Update Password
           </button>
@@ -355,12 +356,11 @@ function ProfileView() {
                   onSubmit={PasswordUpdateForm.handleSubmit(handlePasswordUpdate)}
                 >
                   <p className="text-center text-s md:text-2xl font-mono mb-5 mt-5">
-                    Register Now...
+                    Update Password
                   </p>
-
-                  <FormField
+                     <FormField
                     control={PasswordUpdateForm.control}
-                    name="password"
+                    name="currentPassword"
                     render={({ field }) => (
                       <FormItem className="relative w-full">
                         {!field.value ? (
@@ -370,6 +370,33 @@ function ProfileView() {
                         ) : (
                           <FormLabel className="text-xs md:text-md text-black">
                             Old Password
+                          </FormLabel>
+                        )}
+                        <FormControl>
+                          <Input
+                            type="password"
+                            {...field}
+                            className="text-xs md:text-md"
+                          ></Input>
+                        </FormControl>
+                        <FormDescription />
+                        <FormMessage className="ms-4   text-red-700 text-sm" />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={PasswordUpdateForm.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem className="relative w-full">
+                        {!field.value ? (
+                          <FormLabel className="absolute  text-xs md:text-md left-1 top-3 text-gray-500">
+                            New Password
+                          </FormLabel>
+                        ) : (
+                          <FormLabel className="text-xs md:text-md text-black">
+                            New Password
                           </FormLabel>
                         )}
                         <FormControl>
@@ -411,42 +438,17 @@ function ProfileView() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={PasswordUpdateForm.control}
-                    name="currentPassword"
-                    render={({ field }) => (
-                      <FormItem className="relative w-full">
-                        {!field.value ? (
-                          <FormLabel className="absolute  text-xs md:text-md left-1 top-3 text-gray-500">
-                            New Password
-                          </FormLabel>
-                        ) : (
-                          <FormLabel className="text-xs md:text-md text-black">
-                            New Password
-                          </FormLabel>
-                        )}
-                        <FormControl>
-                          <Input
-                            type="password"
-                            {...field}
-                            className="text-xs md:text-md"
-                          ></Input>
-                        </FormControl>
-                        <FormDescription />
-                        <FormMessage className="ms-4   text-red-700 text-sm" />
-                      </FormItem>
-                    )}
-                  />
+              
                   {!loading ? (
                     <Button
                       type="submit"
                       className=" mx-auto w-1/2 bg-cyan-800 rounded-2xl cursor-pointer text-white"
                     >
-                      Upodate
+                      Update
                     </Button>
                   ) : (
                     <Button
-                      type="submit"
+                      disabled
                       className="w-1/2 bg-cyan-800 rounded-2xl cursor-pointer text-white"
                     >
                       <i className="fa-solid fa-spinner fa-spin"></i>
