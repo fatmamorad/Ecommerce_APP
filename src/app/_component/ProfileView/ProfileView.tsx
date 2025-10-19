@@ -174,7 +174,8 @@ function ProfileView() {
   });
   return (
     <>
-      <div className="w-3/4 mx-auto h-screen  mt-10">
+    <div className="w-full  h-screen flex justify-center items-center">
+      <div className="w-3/4 md:w-1/2  mx-auto   mt-10">
         <p className="text-center text-2xl font-bold">My Account</p>
         <div className="flex flex-col mt-4 border-1 rounded-2xl p-5 border-gray-400 ">
           <p className="font-medium text-sm md:text-xl ">
@@ -210,13 +211,13 @@ function ProfileView() {
           <div className="flex justify-center items-center gap-2">
             <Link
               href=""
-              className="w-fit flex justify-center items-center   text-[10px]   text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
+              className="w-fit flex justify-center items-center   text-[10px]   md:text-sm lg:text-md   text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
             >
               <i className="fa-regular fa-heart"></i> WishList
             </Link>
             <Link
               href=""
-              className=" w-fit flex justify-center items-center   text-[10px]   text-sm md:text-xl text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
+              className=" w-fit flex justify-center items-center   text-[10px]   md:text-sm lg:text-md text-center mt-5 rounded-2xl px-3 py-2 border-1 border-gray-400"
             >
               <i className="fa fa-shopping-cart"></i> Cart
             </Link>
@@ -227,7 +228,7 @@ function ProfileView() {
             type="button"
             data-modal-target="DataUpdateModal"
             data-modal-toggle="DataUpdateModal"
-            className=" text-center mt-5  w-fit flex justify-center items-center   text-[10px]   rounded-2xl px-3 py-2 border-1 bg-cyan-800 text-white"
+            className=" text-center mt-5  w-fit flex justify-center items-center   text-[10px] md:text-sm lg:text-md   rounded-2xl px-3 py-2 border-1 bg-cyan-800 text-white"
           >
             Update Profile
           </button>
@@ -235,7 +236,7 @@ function ProfileView() {
             type="button"
             data-modal-target="PasswordUpdateModal"
             data-modal-toggle="PasswordUpdateModal"
-            className="w-fit flex justify-center items-center   text-[10px]  mt-5 rounded-2xl px-3 py-2 border-1 border-cyan-800 text-cyan-800"
+            className="w-fit flex justify-center items-center   text-[10px]  md:text-sm  lg:text-md mt-5 rounded-2xl px-3 py-2 border-1 border-cyan-800 text-cyan-800"
           >
             Update Password
           </button>
@@ -246,7 +247,7 @@ function ProfileView() {
           aria-hidden="true"
           className="hidden overflow-y-auto overflow-x-hidden bg-black/50 fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
         >
-          <div className="relative p-4 w-full max-w-3/4max-h-full">
+          <div className="relative p-4 w-11/12 md:w-1/2 max-h-full">
             <div className="relative flex bg-white justify-center items-center  rounded-lg shadow-sm dark:bg-gray-700">
               <Form {...dataUpdateForm}>
                 <form
@@ -340,15 +341,12 @@ function ProfileView() {
             </div>
           </div>
         </div>
-
-        {/* Modal for Update User Password..................*/}
-
         <div
           id="PasswordUpdateModal"
           aria-hidden="true"
           className="hidden overflow-y-auto overflow-x-hidden bg-black/50 fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
         >
-          <div className="relative p-4 w-full max-w-3/4 max-h-full">
+          <div className="relative p-4  w-11/12 md:w-1/2  max-h-full">
             <div className="relative flex bg-white justify-center items-center  rounded-lg shadow-sm dark:bg-gray-700">
               <Form {...PasswordUpdateForm}>
                 <form
@@ -460,6 +458,7 @@ function ProfileView() {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

@@ -60,8 +60,8 @@ function Page() {
   })
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-cyan-50 to-white px-4">
-      <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white shadow-lg border border-cyan-100 rounded-2xl p-6 sm:p-8">
+    <div className="md:w-3/4 w-11/12  min-h-screen flex justify-center items-center bg-gradient-to-b from-cyan-50 to-white px-4">
+      <div className="w-full  bg-white shadow-lg border border-cyan-100 rounded-2xl p-6 sm:p-8">
         
         <Form {...registerForm}>
           <form
@@ -99,15 +99,12 @@ function Page() {
             />
             {!loading? <Button
               type="submit"
+              
               className="w-full sm:w-2/3 bg-cyan-800 hover:bg-cyan-700 text-white font-medium py-2 rounded-xl transition-all duration-200"
             >
               Verify
             </Button>:
-             <Button
-              className="w-full sm:w-2/3 bg-cyan-800 hover:bg-cyan-700 text-white font-medium py-2 rounded-xl transition-all duration-200" disabled
-            >
-              <i className='fa-solid fa-spinner fa-spin'></i>
-            </Button>}
+             <Button disabled className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'> <i className='fa fa-spinner fa-spin'></i> </Button>}
            
           </form>
         </Form>

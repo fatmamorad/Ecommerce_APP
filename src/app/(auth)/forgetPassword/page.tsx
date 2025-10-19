@@ -18,8 +18,10 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 function Page() {
+  const [loading,setLoading]=useState(false)
   const Route = useRouter()
   const scheme = z.object({
     email: z.string()
@@ -28,7 +30,9 @@ function Page() {
       .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter valid email"),
   })
   async function handleforgetPassword(values: z.infer<typeof scheme>) {
+    setLoading(true)
     try {
+      
       console.log(process.env.NEXT_PUBLIC_BASE_URL)
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/forgotPasswords`, {
@@ -40,7 +44,7 @@ function Page() {
       })
 
       const data = await res.json()
-
+       setLoading(false)
       if (data.statusMsg === "success") {
         Route.push('/confiremCode')
         toast.success("Reset code sent to your email", {
@@ -54,6 +58,7 @@ function Page() {
     } catch (error) {
       console.error(error)
       toast.error("Something went wrong")
+       setLoading(false)
     }
   }
 
@@ -65,12 +70,12 @@ function Page() {
   })
 
   return (
-    <div className='w-3/4 mx-auto h-screen flex justify-center items-center'>
-      <div className='w-full lg:w-1/2 mx-auto content-center p-8'>
+    <div className='w-11/12 md:w-3/4 mx-auto h-screen flex justify-center items-center'>
+      <div className='w-full  mx-auto content-center p-8'>
 
         <Form {...registerForm}>
           <form
-            className='bg-cyan-50/50 border-b-2 border-r-2 border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-2 rounded-2xl'
+            className=' border-b-2 border-r-2 border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-2 rounded-2xl'
             onSubmit={registerForm.handleSubmit(handleforgetPassword)}
           >
             <p className='text-center text-s md:text-2xl font-mono text-cyan-800'>
@@ -109,13 +114,22 @@ function Page() {
                 </FormItem>
               )}
             />
-
+          {
+            !loading?
             <Button
               type='submit'
               className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'
             >
               Send code
+            </Button>:
+            <Button
+              disabled
+              className='w-full mt-3 bg-cyan-800 rounded-2xl cursor-pointer text-white'
+            >
+              <i className='fa-solid fa-spinner fa-spin'></i>
             </Button>
+          }
+            
           </form>
         </Form>
 

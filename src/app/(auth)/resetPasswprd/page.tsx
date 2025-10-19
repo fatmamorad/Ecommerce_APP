@@ -63,13 +63,13 @@ function Page() {
 resolver:zodResolver(scheme)
    })
     return (
-      <div className='w-3/4 mx-auto h-screen flex justify-center items-center'>
+      <div className='w-11/12 md:w-3/4 mx-auto h-screen flex justify-center items-center'>
 
-        <div className='w-full md:w-1/2  content-center  p-8 focus:outline-0 focus:border-0  justify-center   items-center '>
+        <div className='w-full  content-center  p-8 focus:outline-0 focus:border-0  justify-center   items-center '>
   
            <Form {...registerForm} >
 
-              <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800 border-r-cyan-800 md:bg-transparent p-5 space-y-2 rounded-2xl' onSubmit={registerForm.handleSubmit(handleLogin)}> 
+              <form className='  border-b-2  border-b-cyan-800 shadow-2xl  md:bg-transparent p-5 space-y-2 rounded-2xl' onSubmit={registerForm.handleSubmit(handleLogin)}> 
                   <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>Reset Password...</p>
                     <FormField 
                         control={registerForm.control}

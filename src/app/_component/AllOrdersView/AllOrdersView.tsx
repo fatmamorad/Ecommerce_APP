@@ -21,7 +21,7 @@ function Page() {
 
   return (
     <>
-      <div className="w-11/12 lg:w-3/4 mx-auto">
+      <div className="w-1/2 md:w-3/4 mx-auto">
         <p className="text-center text-xl mt-10 font-semibold">ALL ORDERS</p>
 
         {loading && <Loading></Loading>}

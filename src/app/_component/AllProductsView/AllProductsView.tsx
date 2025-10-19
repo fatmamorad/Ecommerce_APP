@@ -61,7 +61,7 @@ export default function AllProductsView() {
         <Loading></Loading>
       ) : (
         <>
-          <div className="container mx-auto relative min-h-screen">
+          <div className="w-1/2 md:w-3/4 mx-auto relative min-h-screen">
             <div className="h-full w-full">
               <div className="relative mb-0">
                 <p className="text-center text-2xl mt-8">ALL PRODUCTS</p>
