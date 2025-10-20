@@ -1,7 +1,7 @@
 
 import CheckoutView from "image/app/_component/CheckoutView/CheckoutView";
 export const metadata = {
-  title: "Chek Out",
+  title: "ChekOut",
   description: "Browse your favorite products in your wishlist on BuyHive.",
   keywords: ["Chek Out", "buyhive", "shopping", "favorites"],
   openGraph: {

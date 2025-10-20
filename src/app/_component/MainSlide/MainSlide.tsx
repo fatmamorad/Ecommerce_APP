@@ -50,7 +50,7 @@ export default function MainSlide() {
     <div className="relative w-3/4 mx-auto h-[80vh]  mt-10 overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide) => (
-            <div key={slide.id} className="relative w-full h-[90vh]  bg-red-500">
+            <div key={slide.id} className="relative w-full h-[90vh]  ">
               <div className="absolute inset-0 ">
                 <Image src={slide.image}  alt={slide.title} fill priority className="object-cover" />
               </div>

@@ -69,14 +69,14 @@ function Page() {
 resolver:zodResolver(scheme)
    })
     return (
-      <div className='w-3/4 mx-auto h-screen flex justify-centeritems-center'>
+      <div className='md:w-3/4 w-11/12 mx-auto h-screen flex justify-centeritems-center'>
 
         <div className='grid grid-cols-12 w-full '>
-        <div className='col-span-12 lg:col-span-6  content-center place-content-center place-items-center  p-8 focus:outline-0 focus:border-0    items-center w-full'>
+        <div className='col-span-12 lg:col-span-6   content-center place-content-center place-items-center  p-8 focus:outline-0 focus:border-0    items-center w-full'>
   
            <Form {...registerForm} >
 
-              <form className='bg-cyan-50/50   border-b-2 border-r-2  border-b-cyan-800  md:bg-transparent p-5 space-y-3 w-full rounded-2xl' onSubmit={registerForm.handleSubmit(handleRegister)}> 
+              <form className='shadow-2xl border-b-2 border-r-2  border-b-cyan-800  md:bg-transparent p-5 space-y-3 w-full rounded-2xl' onSubmit={registerForm.handleSubmit(handleRegister)}> 
                   <p className='text-center text-s md:text-2xl font-mono mb-5 mt-5'>Register Now...</p>
                    
                     <FormField 
