@@ -12,10 +12,9 @@ import Link from "next/link";
 import AddtoCartIcon from "../AddtoCartIcon/AddtoCartIcon";
 import AddToWishlistIcon from "../AddToWishlistIcon/AddToWishlistIcon";
 function ProductCard({ productdata }: { productdata: Product }) {
- 
-  console.log(productdata);
+
   const percent = Math.round((productdata.ratingsAverage / 5) * 100);
-  console.log(percent);
+
   return (
     
     <Card className="border-0  relative rounded-2xl group my-7  pt-0">

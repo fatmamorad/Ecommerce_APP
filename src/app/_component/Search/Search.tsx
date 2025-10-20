@@ -12,7 +12,7 @@ export default function SearchIcon() {
   async function getdata() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products`)
       const data: ProductData = await res.json()
-    
+
       setproductList(data.data)
 
   }

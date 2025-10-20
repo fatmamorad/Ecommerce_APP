@@ -45,8 +45,6 @@ function CheckoutView() {
   });
 
   async function handlechecout(values: z.infer<typeof scheme>) {
-    
-    console.log(cartID)
     if (paymentMethod === "cash") {
       let data: CheckOut = await CashPayment(cartID, values);
       if (data.status === "success") {

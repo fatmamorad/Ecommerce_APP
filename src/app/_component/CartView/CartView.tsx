@@ -91,8 +91,6 @@ import { clearCartAsync, fetchCart, removeProductAsync, updateProductCountAsync 
                 </div>
               ))}
             </div>
-
-            {/* Table (Desktop) */}
             <div className="hidden lg:block overflow-x-auto shadow-md rounded-xl mt-6">
               <table className="w-full text-sm text-left text-gray-600">
                 <thead className="text-xs uppercase bg-gray-100 text-gray-700">
