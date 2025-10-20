@@ -14,7 +14,6 @@ async function Page() {
   const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products?limit=12`)
   const data: ProductData =await res.json()
   const productList: Product[]=data.data
-  console.log(productList)
   return (
     <div className='container mx-auto '>
     <MainSlide></MainSlide>

@@ -4,8 +4,8 @@ import { cookies} from "next/headers"
 import { VerifyToken } from "./types/verifyToken.type"
 export async function GetUserToken() {
     const cookiesDatat=await cookies()
-    //const encryptToken= cookiesDatat.get("__Secure-next-auth.session-token")?.value
-    const encryptToken= cookiesDatat.get("next-auth.csrf-token")?.value
+    const encryptToken= cookiesDatat.get("__Secure-next-auth.session-token")?.value
+   // const encryptToken= cookiesDatat.get("next-auth.session-token")?.value
     const data=await decode({token:encryptToken,secret:process.env.NEXTAUTH_SECRET!})
     console.log(data)
     return data?.accessToken
