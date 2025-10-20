@@ -70,7 +70,7 @@ function Page() {
   })
 
   return (
-    <div className='w-11/12 md:w-3/4 mx-auto h-screen flex justify-center items-center'>
+    <div className='w-11/12 md:w-1/2 mx-auto h-screen flex justify-center items-center'>
       <div className='w-full  mx-auto content-center p-8'>
 
         <Form {...registerForm}>

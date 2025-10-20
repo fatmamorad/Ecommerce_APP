@@ -60,7 +60,7 @@ function Page() {
   })
 
   return (
-    <div className="md:w-3/4 w-11/12  min-h-screen flex justify-center items-center bg-gradient-to-b from-cyan-50 to-white px-4">
+    <div className="md:w-1/2 w-11/12  min-h-screen flex justify-center items-center bg-gradient-to-b from-cyan-50 to-white px-4">
       <div className="w-full  bg-white shadow-lg border border-cyan-100 rounded-2xl p-6 sm:p-8">
         
         <Form {...registerForm}>

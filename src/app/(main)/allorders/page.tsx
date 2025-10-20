@@ -22,7 +22,11 @@ function Page() {
   return (
     <>
       <div className="w-11/12 lg:w-3/4 mx-auto">
-        <p className="text-center text-xl mt-10 font-semibold">ALL ORDERS</p>
+          <div className='relative mb-0'>
+            <p className='text-center text-2xl mt-5 '>All Orders</p>
+            <p className='relative bottom-4 left-1/2 font-bold text-gray-600/30  z-0 -translate-1/2 text-5xl w-fit'>A</p>
+        </div>
+       
 
         {loading && <Loading></Loading>}
 

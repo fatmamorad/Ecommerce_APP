@@ -324,7 +324,7 @@ function ProfileView() {
                         type="submit"
                         className=" mx-auto w-1/2 bg-cyan-800 rounded-2xl cursor-pointer text-white"
                       >
-                        Upodate
+                        Update
                       </Button>
                     ) : (
                       <Button

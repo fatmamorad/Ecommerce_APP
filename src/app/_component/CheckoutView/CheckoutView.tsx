@@ -23,13 +23,16 @@ import { Input } from "image/components/ui/input";
 import Loading from "image/app/loading";
 
 function CheckoutView() {
+  const [loading,setLoading]=useState(false)
   const { cartID } = useParams<{ cartID: string }>();
   const [paymentMethod, setPaymentMethod] = useState<string>("cash");
   const [CartItems, setCartItems] = useState<Cart>();
   const [TotalPrice, setPrice] = useState(0);
  
   async function getcartItems() {
+    
     const data: CartData = await GetCartItems();
+   
     setPrice(data?.data?.totalCartPrice);
     setCartItems(data.data);
   }
@@ -45,8 +48,10 @@ function CheckoutView() {
   });
 
   async function handlechecout(values: z.infer<typeof scheme>) {
+    setLoading(true)
     if (paymentMethod === "cash") {
       let data: CheckOut = await CashPayment(cartID, values);
+      setLoading(false)
       if (data.status === "success") {
         toast.success("Order Completed", { position: "top-center" });
         window.location.href = "/";
@@ -55,6 +60,7 @@ function CheckoutView() {
 
     if (paymentMethod === "card") {
       let data :CardPaymenttype= await CardPayment(cartID, values);
+      setLoading(false)
       if (data.session.url) {
         window.location.href = data.session.url;
       }
@@ -153,13 +159,19 @@ function CheckoutView() {
               </div>
 
               {/* Submit */}
-              <Button
+              {!loading?<Button
                 type="submit"
                 className="w-full mt-4 bg-cyan-800 rounded-xl text-white"
               
               >
                 Complete Order
-              </Button>
+              </Button>:<Button
+                type="submit"
+                disabled
+                className="w-full mt-4 bg-cyan-800 rounded-xl text-white"
+              >
+                <i className="fa-solid fa-spinner fa-spin"></i>
+              </Button>}
             </form>
           </Form>
         </div>
